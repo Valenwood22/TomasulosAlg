@@ -51,17 +51,17 @@ namespace TomasulosAlgorithm {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Label^ label1;
-	protected:
-	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::Label^ label7;
-	private: System::Windows::Forms::Button^ GenBtn;
 
-	private: System::Windows::Forms::Button^ rstBtn;
+	protected:
+
+
+
+
+
+
+
+
+
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Label^ label8;
 	private: System::Windows::Forms::Label^ label9;
@@ -108,15 +108,6 @@ namespace TomasulosAlgorithm {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Form1::typeid));
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->GenBtn = (gcnew System::Windows::Forms::Button());
-			this->rstBtn = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->label9 = (gcnew System::Windows::Forms::Label());
@@ -139,89 +130,6 @@ namespace TomasulosAlgorithm {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->reg2UD))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->reg3UD))->BeginInit();
 			this->SuspendLayout();
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(489, 634);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(35, 13);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"label1";
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(530, 634);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(35, 13);
-			this->label2->TabIndex = 1;
-			this->label2->Text = L"label2";
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(571, 634);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(35, 13);
-			this->label3->TabIndex = 2;
-			this->label3->Text = L"label3";
-			// 
-			// label4
-			// 
-			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(612, 634);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(35, 13);
-			this->label4->TabIndex = 3;
-			this->label4->Text = L"label4";
-			// 
-			// label5
-			// 
-			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(662, 634);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(35, 13);
-			this->label5->TabIndex = 4;
-			this->label5->Text = L"label5";
-			// 
-			// label6
-			// 
-			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(448, 634);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(35, 13);
-			this->label6->TabIndex = 5;
-			this->label6->Text = L"label6";
-			// 
-			// label7
-			// 
-			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(391, 634);
-			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(35, 13);
-			this->label7->TabIndex = 6;
-			this->label7->Text = L"label7";
-			// 
-			// GenBtn
-			// 
-			this->GenBtn->Location = System::Drawing::Point(408, 585);
-			this->GenBtn->Name = L"GenBtn";
-			this->GenBtn->Size = System::Drawing::Size(75, 23);
-			this->GenBtn->TabIndex = 7;
-			this->GenBtn->Text = L"Generate";
-			this->GenBtn->UseVisualStyleBackColor = true;
-			this->GenBtn->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
-			// 
-			// rstBtn
-			// 
-			this->rstBtn->Location = System::Drawing::Point(507, 585);
-			this->rstBtn->Name = L"rstBtn";
-			this->rstBtn->Size = System::Drawing::Size(75, 23);
-			this->rstBtn->TabIndex = 8;
-			this->rstBtn->Text = L"Reset";
-			this->rstBtn->UseVisualStyleBackColor = true;
-			this->rstBtn->Click += gcnew System::EventHandler(this, &Form1::rstBtn_Click);
 			// 
 			// pictureBox1
 			// 
@@ -377,7 +285,7 @@ namespace TomasulosAlgorithm {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(919, 662);
+			this->ClientSize = System::Drawing::Size(941, 511);
 			this->Controls->Add(this->QuickAddBtn);
 			this->Controls->Add(this->label14);
 			this->Controls->Add(this->label13);
@@ -395,15 +303,6 @@ namespace TomasulosAlgorithm {
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->pictureBox1);
-			this->Controls->Add(this->rstBtn);
-			this->Controls->Add(this->GenBtn);
-			this->Controls->Add(this->label7);
-			this->Controls->Add(this->label6);
-			this->Controls->Add(this->label5);
-			this->Controls->Add(this->label4);
-			this->Controls->Add(this->label3);
-			this->Controls->Add(this->label2);
-			this->Controls->Add(this->label1);
 			this->Name = L"Form1";
 			this->Text = L"Tomasulos Algorithm";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
@@ -415,47 +314,6 @@ namespace TomasulosAlgorithm {
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-
-		int num[7] = { 0 };
-
-
-		// Randomize the array values.
-		for (int i = 0; i < 7; i++)
-			num[i] = (99 % 99) + 1;
-
-		// set the label text with random number
-		this->label1->Text = Convert::ToString(num[0]);
-		this->label2->Text = Convert::ToString(num[1]);
-		this->label3->Text = Convert::ToString(num[2]);
-		this->label4->Text = Convert::ToString(num[3]);
-		this->label5->Text = Convert::ToString(num[4]);
-		this->label6->Text = Convert::ToString(num[5]);
-		this->label7->Text = Convert::ToString(num[6]);
-
-		// change the button states.
-		this->GenBtn->Enabled = false;
-		this->rstBtn->Enabled = true;
-
-
-	}
-
-private: System::Void rstBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-
-	// clear label fields
-	this->label1->Text = "0";
-	this->label2->Text = "0";
-	this->label3->Text = "0";
-	this->label4->Text = "0";
-	this->label5->Text = "0";
-	this->label6->Text = "0";
-	this->label7->Text = "0";
-
-	// set button state
-	this->GenBtn->Enabled = true;
-	this->rstBtn->Enabled = false;
-}
-
 private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
 	
 
