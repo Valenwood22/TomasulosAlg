@@ -85,6 +85,26 @@ namespace TomasulosAlgorithm {
 	private: System::Windows::Forms::Label^ label13;
 	private: System::Windows::Forms::Label^ label14;
 	private: System::Windows::Forms::Button^ QuickAddBtn;
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::Label^ label5;
+	private: System::Windows::Forms::Label^ label6;
+	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::Label^ label15;
+	private: System::Windows::Forms::Label^ label16;
+	private: System::Windows::Forms::Label^ label17;
+	private: System::Windows::Forms::TextBox^ RegF0;
+	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::Windows::Forms::TextBox^ textBox3;
+	private: System::Windows::Forms::TextBox^ textBox4;
+	private: System::Windows::Forms::TextBox^ textBox5;
+	private: System::Windows::Forms::TextBox^ textBox6;
+	private: System::Windows::Forms::TextBox^ textBox7;
+	private: System::Windows::Forms::TextBox^ textBox8;
+	private: System::Windows::Forms::TextBox^ textBox9;
+	private: System::Windows::Forms::TextBox^ textBox10;
 
 	
 
@@ -125,6 +145,26 @@ namespace TomasulosAlgorithm {
 			this->label13 = (gcnew System::Windows::Forms::Label());
 			this->label14 = (gcnew System::Windows::Forms::Label());
 			this->QuickAddBtn = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->label15 = (gcnew System::Windows::Forms::Label());
+			this->label16 = (gcnew System::Windows::Forms::Label());
+			this->label17 = (gcnew System::Windows::Forms::Label());
+			this->RegF0 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox8 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox10 = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->reg1UD))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->reg2UD))->BeginInit();
@@ -152,7 +192,7 @@ namespace TomasulosAlgorithm {
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(186, 9);
+			this->label9->Location = System::Drawing::Point(12, 262);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(44, 13);
 			this->label9->TabIndex = 11;
@@ -161,7 +201,7 @@ namespace TomasulosAlgorithm {
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(12, 339);
+			this->label10->Location = System::Drawing::Point(440, 175);
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(81, 13);
 			this->label10->TabIndex = 12;
@@ -170,7 +210,7 @@ namespace TomasulosAlgorithm {
 			// label11
 			// 
 			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(348, 9);
+			this->label11->Location = System::Drawing::Point(453, 107);
 			this->label11->Name = L"label11";
 			this->label11->Size = System::Drawing::Size(105, 13);
 			this->label11->TabIndex = 13;
@@ -178,7 +218,7 @@ namespace TomasulosAlgorithm {
 			// 
 			// AddInstBtn
 			// 
-			this->AddInstBtn->Location = System::Drawing::Point(12, 276);
+			this->AddInstBtn->Location = System::Drawing::Point(45, 227);
 			this->AddInstBtn->Name = L"AddInstBtn";
 			this->AddInstBtn->Size = System::Drawing::Size(75, 23);
 			this->AddInstBtn->TabIndex = 14;
@@ -188,7 +228,7 @@ namespace TomasulosAlgorithm {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(154, 457);
+			this->button2->Location = System::Drawing::Point(586, 518);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 15;
@@ -197,7 +237,7 @@ namespace TomasulosAlgorithm {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(246, 456);
+			this->button3->Location = System::Drawing::Point(678, 517);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(75, 23);
 			this->button3->TabIndex = 16;
@@ -208,7 +248,7 @@ namespace TomasulosAlgorithm {
 			// 
 			this->InstBank->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->InstBank->Location = System::Drawing::Point(12, 107);
+			this->InstBank->Location = System::Drawing::Point(12, 58);
 			this->InstBank->Name = L"InstBank";
 			this->InstBank->ReadOnly = true;
 			this->InstBank->Size = System::Drawing::Size(229, 167);
@@ -218,28 +258,28 @@ namespace TomasulosAlgorithm {
 			// InstBox
 			// 
 			this->InstBox->FormattingEnabled = true;
-			this->InstBox->Location = System::Drawing::Point(13, 80);
+			this->InstBox->Location = System::Drawing::Point(13, 31);
 			this->InstBox->Name = L"InstBox";
 			this->InstBox->Size = System::Drawing::Size(46, 21);
 			this->InstBox->TabIndex = 18;
 			// 
 			// reg1UD
 			// 
-			this->reg1UD->Location = System::Drawing::Point(86, 80);
+			this->reg1UD->Location = System::Drawing::Point(86, 31);
 			this->reg1UD->Name = L"reg1UD";
 			this->reg1UD->Size = System::Drawing::Size(34, 20);
 			this->reg1UD->TabIndex = 19;
 			// 
 			// reg2UD
 			// 
-			this->reg2UD->Location = System::Drawing::Point(147, 81);
+			this->reg2UD->Location = System::Drawing::Point(147, 32);
 			this->reg2UD->Name = L"reg2UD";
 			this->reg2UD->Size = System::Drawing::Size(34, 20);
 			this->reg2UD->TabIndex = 20;
 			// 
 			// reg3UD
 			// 
-			this->reg3UD->Location = System::Drawing::Point(207, 81);
+			this->reg3UD->Location = System::Drawing::Point(207, 32);
 			this->reg3UD->Name = L"reg3UD";
 			this->reg3UD->Size = System::Drawing::Size(34, 20);
 			this->reg3UD->TabIndex = 21;
@@ -247,7 +287,7 @@ namespace TomasulosAlgorithm {
 			// label12
 			// 
 			this->label12->AutoSize = true;
-			this->label12->Location = System::Drawing::Point(65, 83);
+			this->label12->Location = System::Drawing::Point(65, 34);
 			this->label12->Name = L"label12";
 			this->label12->Size = System::Drawing::Size(15, 13);
 			this->label12->TabIndex = 22;
@@ -256,7 +296,7 @@ namespace TomasulosAlgorithm {
 			// label13
 			// 
 			this->label13->AutoSize = true;
-			this->label13->Location = System::Drawing::Point(126, 83);
+			this->label13->Location = System::Drawing::Point(126, 34);
 			this->label13->Name = L"label13";
 			this->label13->Size = System::Drawing::Size(15, 13);
 			this->label13->TabIndex = 23;
@@ -265,7 +305,7 @@ namespace TomasulosAlgorithm {
 			// label14
 			// 
 			this->label14->AutoSize = true;
-			this->label14->Location = System::Drawing::Point(186, 83);
+			this->label14->Location = System::Drawing::Point(186, 34);
 			this->label14->Name = L"label14";
 			this->label14->Size = System::Drawing::Size(15, 13);
 			this->label14->TabIndex = 24;
@@ -273,7 +313,7 @@ namespace TomasulosAlgorithm {
 			// 
 			// QuickAddBtn
 			// 
-			this->QuickAddBtn->Location = System::Drawing::Point(155, 276);
+			this->QuickAddBtn->Location = System::Drawing::Point(129, 227);
 			this->QuickAddBtn->Name = L"QuickAddBtn";
 			this->QuickAddBtn->Size = System::Drawing::Size(75, 23);
 			this->QuickAddBtn->TabIndex = 25;
@@ -281,11 +321,202 @@ namespace TomasulosAlgorithm {
 			this->QuickAddBtn->UseVisualStyleBackColor = true;
 			this->QuickAddBtn->Click += gcnew System::EventHandler(this, &Form1::QuickAddBtn_Click);
 			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(12, 287);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(21, 13);
+			this->label1->TabIndex = 26;
+			this->label1->Text = L"R0";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(12, 313);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(21, 13);
+			this->label2->TabIndex = 27;
+			this->label2->Text = L"R1";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(12, 339);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(21, 13);
+			this->label3->TabIndex = 28;
+			this->label3->Text = L"R2";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(12, 365);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(21, 13);
+			this->label4->TabIndex = 29;
+			this->label4->Text = L"R3";
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(12, 391);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(21, 13);
+			this->label5->TabIndex = 30;
+			this->label5->Text = L"R4";
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(12, 414);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(21, 13);
+			this->label6->TabIndex = 31;
+			this->label6->Text = L"R5";
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(12, 440);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(21, 13);
+			this->label7->TabIndex = 32;
+			this->label7->Text = L"R6";
+			// 
+			// label15
+			// 
+			this->label15->AutoSize = true;
+			this->label15->Location = System::Drawing::Point(12, 468);
+			this->label15->Name = L"label15";
+			this->label15->Size = System::Drawing::Size(21, 13);
+			this->label15->TabIndex = 33;
+			this->label15->Text = L"R7";
+			// 
+			// label16
+			// 
+			this->label16->AutoSize = true;
+			this->label16->Location = System::Drawing::Point(12, 492);
+			this->label16->Name = L"label16";
+			this->label16->Size = System::Drawing::Size(21, 13);
+			this->label16->TabIndex = 34;
+			this->label16->Text = L"R8";
+			// 
+			// label17
+			// 
+			this->label17->AutoSize = true;
+			this->label17->Location = System::Drawing::Point(12, 521);
+			this->label17->Name = L"label17";
+			this->label17->Size = System::Drawing::Size(21, 13);
+			this->label17->TabIndex = 35;
+			this->label17->Text = L"R9";
+			// 
+			// RegF0
+			// 
+			this->RegF0->Location = System::Drawing::Point(39, 284);
+			this->RegF0->Name = L"RegF0";
+			this->RegF0->ReadOnly = true;
+			this->RegF0->Size = System::Drawing::Size(33, 20);
+			this->RegF0->TabIndex = 36;
+			this->RegF0->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
+			// textBox2
+			// 
+			this->textBox2->Location = System::Drawing::Point(39, 310);
+			this->textBox2->Name = L"textBox2";
+			this->textBox2->Size = System::Drawing::Size(33, 20);
+			this->textBox2->TabIndex = 37;
+			this->textBox2->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
+			// textBox3
+			// 
+			this->textBox3->Location = System::Drawing::Point(39, 336);
+			this->textBox3->Name = L"textBox3";
+			this->textBox3->Size = System::Drawing::Size(33, 20);
+			this->textBox3->TabIndex = 38;
+			this->textBox3->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
+			// textBox4
+			// 
+			this->textBox4->Location = System::Drawing::Point(39, 362);
+			this->textBox4->Name = L"textBox4";
+			this->textBox4->Size = System::Drawing::Size(33, 20);
+			this->textBox4->TabIndex = 39;
+			this->textBox4->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
+			// textBox5
+			// 
+			this->textBox5->Location = System::Drawing::Point(39, 388);
+			this->textBox5->Name = L"textBox5";
+			this->textBox5->Size = System::Drawing::Size(33, 20);
+			this->textBox5->TabIndex = 40;
+			this->textBox5->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
+			// textBox6
+			// 
+			this->textBox6->Location = System::Drawing::Point(39, 414);
+			this->textBox6->Name = L"textBox6";
+			this->textBox6->Size = System::Drawing::Size(33, 20);
+			this->textBox6->TabIndex = 41;
+			this->textBox6->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
+			// textBox7
+			// 
+			this->textBox7->Location = System::Drawing::Point(39, 440);
+			this->textBox7->Name = L"textBox7";
+			this->textBox7->Size = System::Drawing::Size(33, 20);
+			this->textBox7->TabIndex = 42;
+			this->textBox7->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
+			// textBox8
+			// 
+			this->textBox8->Location = System::Drawing::Point(39, 466);
+			this->textBox8->Name = L"textBox8";
+			this->textBox8->Size = System::Drawing::Size(33, 20);
+			this->textBox8->TabIndex = 43;
+			this->textBox8->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
+			// textBox9
+			// 
+			this->textBox9->Location = System::Drawing::Point(39, 492);
+			this->textBox9->Name = L"textBox9";
+			this->textBox9->Size = System::Drawing::Size(33, 20);
+			this->textBox9->TabIndex = 44;
+			this->textBox9->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
+			// textBox10
+			// 
+			this->textBox10->Location = System::Drawing::Point(39, 518);
+			this->textBox10->Name = L"textBox10";
+			this->textBox10->Size = System::Drawing::Size(33, 20);
+			this->textBox10->TabIndex = 45;
+			this->textBox10->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(941, 511);
+			this->ClientSize = System::Drawing::Size(941, 685);
+			this->Controls->Add(this->textBox10);
+			this->Controls->Add(this->textBox9);
+			this->Controls->Add(this->textBox8);
+			this->Controls->Add(this->textBox7);
+			this->Controls->Add(this->textBox6);
+			this->Controls->Add(this->textBox5);
+			this->Controls->Add(this->textBox4);
+			this->Controls->Add(this->textBox3);
+			this->Controls->Add(this->textBox2);
+			this->Controls->Add(this->RegF0);
+			this->Controls->Add(this->label17);
+			this->Controls->Add(this->label16);
+			this->Controls->Add(this->label15);
+			this->Controls->Add(this->label7);
+			this->Controls->Add(this->label6);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->QuickAddBtn);
 			this->Controls->Add(this->label14);
 			this->Controls->Add(this->label13);
