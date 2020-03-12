@@ -4,7 +4,7 @@
 #include "InstObj.cpp"
 #include <vector>
 #include <string>
-
+#include <array>
 
 
 namespace TomasulosAlgorithm {
@@ -32,7 +32,10 @@ namespace TomasulosAlgorithm {
 		std::vector<instObj>* mulUnit = new std::vector<instObj>;
 
 		int curClockCycle = 0;
-	
+
+		std::vector<int>* regFilesA = new std::vector<int>;
+
+
 
 
 		Form1(void)
@@ -43,11 +46,22 @@ namespace TomasulosAlgorithm {
 			InstBox->Items->Add("SUB");
 			InstBox->Items->Add("MUL");
 			InstBox->Items->Add("DIV");
+			
+			RegF0->Text = "0";
+			RegF1->Text = "1";
+			RegF2->Text = "2";
+			RegF3->Text = "3";
+			RegF4->Text = "4";
+			RegF5->Text = "5";
+			RegF6->Text = "6";
+			RegF7->Text = "7";
+			RegF8->Text = "8";
+			RegF9->Text = "9";
+			for (int i = 0; i < 10; i++) {
+				this->regFilesA->push_back(i);
+			}
+			current_clock->Text = "0";
 
-
-			//
-			//TODO: Add the constructor code here
-			//
 		}
 
 	protected:
@@ -106,15 +120,24 @@ namespace TomasulosAlgorithm {
 	private: System::Windows::Forms::Label^ label16;
 	private: System::Windows::Forms::Label^ label17;
 	private: System::Windows::Forms::TextBox^ RegF0;
-	private: System::Windows::Forms::TextBox^ textBox2;
-	private: System::Windows::Forms::TextBox^ textBox3;
-	private: System::Windows::Forms::TextBox^ textBox4;
-	private: System::Windows::Forms::TextBox^ textBox5;
-	private: System::Windows::Forms::TextBox^ textBox6;
-	private: System::Windows::Forms::TextBox^ textBox7;
-	private: System::Windows::Forms::TextBox^ textBox8;
-	private: System::Windows::Forms::TextBox^ textBox9;
-	private: System::Windows::Forms::TextBox^ textBox10;
+	private: System::Windows::Forms::TextBox^ RegF1;
+	private: System::Windows::Forms::TextBox^ RegF2;
+	private: System::Windows::Forms::TextBox^ RegF3;
+	private: System::Windows::Forms::TextBox^ RegF4;
+	private: System::Windows::Forms::TextBox^ RegF5;
+	private: System::Windows::Forms::TextBox^ RegF6;
+	private: System::Windows::Forms::TextBox^ RegF7;
+	private: System::Windows::Forms::TextBox^ RegF8;
+private: System::Windows::Forms::TextBox^ RegF9;
+
+
+
+
+
+
+
+
+
 	private: System::Windows::Forms::Label^ label18;
 	private: System::Windows::Forms::TextBox^ RF_r6;
 
@@ -164,7 +187,8 @@ namespace TomasulosAlgorithm {
 	private: System::Windows::Forms::TextBox^ RS1_t1;
 
 	private: System::Windows::Forms::TextBox^ RS1_t2;
-	private: System::Windows::Forms::TextBox^ RS1_V1;
+private: System::Windows::Forms::TextBox^ RS1_v1;
+
 	private: System::Windows::Forms::TextBox^ RS1_v2;
 	private: System::Windows::Forms::TextBox^ textBox15;
 	private: System::Windows::Forms::TextBox^ RS1_tag;
@@ -346,15 +370,15 @@ namespace TomasulosAlgorithm {
 			this->label16 = (gcnew System::Windows::Forms::Label());
 			this->label17 = (gcnew System::Windows::Forms::Label());
 			this->RegF0 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox8 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox10 = (gcnew System::Windows::Forms::TextBox());
+			this->RegF1 = (gcnew System::Windows::Forms::TextBox());
+			this->RegF2 = (gcnew System::Windows::Forms::TextBox());
+			this->RegF3 = (gcnew System::Windows::Forms::TextBox());
+			this->RegF4 = (gcnew System::Windows::Forms::TextBox());
+			this->RegF5 = (gcnew System::Windows::Forms::TextBox());
+			this->RegF6 = (gcnew System::Windows::Forms::TextBox());
+			this->RegF7 = (gcnew System::Windows::Forms::TextBox());
+			this->RegF8 = (gcnew System::Windows::Forms::TextBox());
+			this->RegF9 = (gcnew System::Windows::Forms::TextBox());
 			this->label18 = (gcnew System::Windows::Forms::Label());
 			this->RF_r6 = (gcnew System::Windows::Forms::TextBox());
 			this->RF_r5 = (gcnew System::Windows::Forms::TextBox());
@@ -391,7 +415,7 @@ namespace TomasulosAlgorithm {
 			this->RS1_op = (gcnew System::Windows::Forms::TextBox());
 			this->RS1_t1 = (gcnew System::Windows::Forms::TextBox());
 			this->RS1_t2 = (gcnew System::Windows::Forms::TextBox());
-			this->RS1_V1 = (gcnew System::Windows::Forms::TextBox());
+			this->RS1_v1 = (gcnew System::Windows::Forms::TextBox());
 			this->RS1_v2 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox15 = (gcnew System::Windows::Forms::TextBox());
 			this->RS1_tag = (gcnew System::Windows::Forms::TextBox());
@@ -723,86 +747,86 @@ namespace TomasulosAlgorithm {
 			this->RegF0->TabIndex = 36;
 			this->RegF0->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
-			// textBox2
+			// RegF1
 			// 
-			this->textBox2->Location = System::Drawing::Point(39, 310);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->ReadOnly = true;
-			this->textBox2->Size = System::Drawing::Size(33, 20);
-			this->textBox2->TabIndex = 37;
-			this->textBox2->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->RegF1->Location = System::Drawing::Point(39, 310);
+			this->RegF1->Name = L"RegF1";
+			this->RegF1->ReadOnly = true;
+			this->RegF1->Size = System::Drawing::Size(33, 20);
+			this->RegF1->TabIndex = 37;
+			this->RegF1->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
-			// textBox3
+			// RegF2
 			// 
-			this->textBox3->Location = System::Drawing::Point(39, 336);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->ReadOnly = true;
-			this->textBox3->Size = System::Drawing::Size(33, 20);
-			this->textBox3->TabIndex = 38;
-			this->textBox3->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->RegF2->Location = System::Drawing::Point(39, 336);
+			this->RegF2->Name = L"RegF2";
+			this->RegF2->ReadOnly = true;
+			this->RegF2->Size = System::Drawing::Size(33, 20);
+			this->RegF2->TabIndex = 38;
+			this->RegF2->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
-			// textBox4
+			// RegF3
 			// 
-			this->textBox4->Location = System::Drawing::Point(39, 362);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->ReadOnly = true;
-			this->textBox4->Size = System::Drawing::Size(33, 20);
-			this->textBox4->TabIndex = 39;
-			this->textBox4->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->RegF3->Location = System::Drawing::Point(39, 362);
+			this->RegF3->Name = L"RegF3";
+			this->RegF3->ReadOnly = true;
+			this->RegF3->Size = System::Drawing::Size(33, 20);
+			this->RegF3->TabIndex = 39;
+			this->RegF3->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
-			// textBox5
+			// RegF4
 			// 
-			this->textBox5->Location = System::Drawing::Point(39, 388);
-			this->textBox5->Name = L"textBox5";
-			this->textBox5->ReadOnly = true;
-			this->textBox5->Size = System::Drawing::Size(33, 20);
-			this->textBox5->TabIndex = 40;
-			this->textBox5->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->RegF4->Location = System::Drawing::Point(39, 388);
+			this->RegF4->Name = L"RegF4";
+			this->RegF4->ReadOnly = true;
+			this->RegF4->Size = System::Drawing::Size(33, 20);
+			this->RegF4->TabIndex = 40;
+			this->RegF4->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
-			// textBox6
+			// RegF5
 			// 
-			this->textBox6->Location = System::Drawing::Point(39, 414);
-			this->textBox6->Name = L"textBox6";
-			this->textBox6->ReadOnly = true;
-			this->textBox6->Size = System::Drawing::Size(33, 20);
-			this->textBox6->TabIndex = 41;
-			this->textBox6->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->RegF5->Location = System::Drawing::Point(39, 414);
+			this->RegF5->Name = L"RegF5";
+			this->RegF5->ReadOnly = true;
+			this->RegF5->Size = System::Drawing::Size(33, 20);
+			this->RegF5->TabIndex = 41;
+			this->RegF5->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
-			// textBox7
+			// RegF6
 			// 
-			this->textBox7->Location = System::Drawing::Point(39, 440);
-			this->textBox7->Name = L"textBox7";
-			this->textBox7->ReadOnly = true;
-			this->textBox7->Size = System::Drawing::Size(33, 20);
-			this->textBox7->TabIndex = 42;
-			this->textBox7->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->RegF6->Location = System::Drawing::Point(39, 440);
+			this->RegF6->Name = L"RegF6";
+			this->RegF6->ReadOnly = true;
+			this->RegF6->Size = System::Drawing::Size(33, 20);
+			this->RegF6->TabIndex = 42;
+			this->RegF6->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
-			// textBox8
+			// RegF7
 			// 
-			this->textBox8->Location = System::Drawing::Point(39, 466);
-			this->textBox8->Name = L"textBox8";
-			this->textBox8->ReadOnly = true;
-			this->textBox8->Size = System::Drawing::Size(33, 20);
-			this->textBox8->TabIndex = 43;
-			this->textBox8->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->RegF7->Location = System::Drawing::Point(39, 466);
+			this->RegF7->Name = L"RegF7";
+			this->RegF7->ReadOnly = true;
+			this->RegF7->Size = System::Drawing::Size(33, 20);
+			this->RegF7->TabIndex = 43;
+			this->RegF7->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
-			// textBox9
+			// RegF8
 			// 
-			this->textBox9->Location = System::Drawing::Point(39, 492);
-			this->textBox9->Name = L"textBox9";
-			this->textBox9->ReadOnly = true;
-			this->textBox9->Size = System::Drawing::Size(33, 20);
-			this->textBox9->TabIndex = 44;
-			this->textBox9->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->RegF8->Location = System::Drawing::Point(39, 492);
+			this->RegF8->Name = L"RegF8";
+			this->RegF8->ReadOnly = true;
+			this->RegF8->Size = System::Drawing::Size(33, 20);
+			this->RegF8->TabIndex = 44;
+			this->RegF8->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
-			// textBox10
+			// RegF9
 			// 
-			this->textBox10->Location = System::Drawing::Point(39, 518);
-			this->textBox10->Name = L"textBox10";
-			this->textBox10->ReadOnly = true;
-			this->textBox10->Size = System::Drawing::Size(33, 20);
-			this->textBox10->TabIndex = 45;
-			this->textBox10->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->RegF9->Location = System::Drawing::Point(39, 518);
+			this->RegF9->Name = L"RegF9";
+			this->RegF9->ReadOnly = true;
+			this->RegF9->Size = System::Drawing::Size(33, 20);
+			this->RegF9->TabIndex = 45;
+			this->RegF9->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// label18
 			// 
@@ -1128,14 +1152,14 @@ namespace TomasulosAlgorithm {
 			this->RS1_t2->TabIndex = 81;
 			this->RS1_t2->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
-			// RS1_V1
+			// RS1_v1
 			// 
-			this->RS1_V1->Location = System::Drawing::Point(499, 79);
-			this->RS1_V1->Name = L"RS1_V1";
-			this->RS1_V1->ReadOnly = true;
-			this->RS1_V1->Size = System::Drawing::Size(46, 20);
-			this->RS1_V1->TabIndex = 82;
-			this->RS1_V1->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->RS1_v1->Location = System::Drawing::Point(499, 79);
+			this->RS1_v1->Name = L"RS1_v1";
+			this->RS1_v1->ReadOnly = true;
+			this->RS1_v1->Size = System::Drawing::Size(46, 20);
+			this->RS1_v1->TabIndex = 82;
+			this->RS1_v1->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// RS1_v2
 			// 
@@ -1895,7 +1919,7 @@ namespace TomasulosAlgorithm {
 			this->Controls->Add(this->RS1_tag);
 			this->Controls->Add(this->textBox15);
 			this->Controls->Add(this->RS1_v2);
-			this->Controls->Add(this->RS1_V1);
+			this->Controls->Add(this->RS1_v1);
 			this->Controls->Add(this->RS1_t2);
 			this->Controls->Add(this->RS1_t1);
 			this->Controls->Add(this->RS1_op);
@@ -1932,15 +1956,15 @@ namespace TomasulosAlgorithm {
 			this->Controls->Add(this->RF_r5);
 			this->Controls->Add(this->RF_r6);
 			this->Controls->Add(this->label18);
-			this->Controls->Add(this->textBox10);
-			this->Controls->Add(this->textBox9);
-			this->Controls->Add(this->textBox8);
-			this->Controls->Add(this->textBox7);
-			this->Controls->Add(this->textBox6);
-			this->Controls->Add(this->textBox5);
-			this->Controls->Add(this->textBox4);
-			this->Controls->Add(this->textBox3);
-			this->Controls->Add(this->textBox2);
+			this->Controls->Add(this->RegF9);
+			this->Controls->Add(this->RegF8);
+			this->Controls->Add(this->RegF7);
+			this->Controls->Add(this->RegF6);
+			this->Controls->Add(this->RegF5);
+			this->Controls->Add(this->RegF4);
+			this->Controls->Add(this->RegF3);
+			this->Controls->Add(this->RegF2);
+			this->Controls->Add(this->RegF1);
 			this->Controls->Add(this->RegF0);
 			this->Controls->Add(this->label17);
 			this->Controls->Add(this->label16);
@@ -2025,8 +2049,9 @@ private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^
 		
 		
 		if (curObj.inst.compare("ADD") == 0 || curObj.inst.compare("SUB") == 0) {
-			if ( this->addUnit->size() < MAX_ADD_UNIT ) {
+			if ( this->addUnit->size() < this->MAX_ADD_UNIT ) {
 				this->addUnit->push_back(curObj);
+				this->updateAddUnit();
 			}
 			else {
 				this->instList->insert(instList->begin(), curObj);
@@ -2035,8 +2060,9 @@ private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^
 
 		}
 		else {
-			if (this->mulUnit->size() < MAX_MUL_UNIT) {
+			if (this->mulUnit->size() < this->MAX_MUL_UNIT) {
 				this->mulUnit->push_back(curObj);
+				this->updateMulUnit();
 			}
 			else {
 				this->instList->insert(instList->begin(), curObj);
@@ -2044,14 +2070,50 @@ private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^
 			}
 
 		}
+	}
 
-		//std::cout << curObj.inst;
+	// subtract clock cycles from inst and see if they can execute
+
+
+
+}
+
+private: System::Void updateMulUnit() {
+	for (int i = 0; i < mulUnit->size(); i++) {
+		instObj cur = mulUnit->at(i);
+		if (i == 0) {
+			this->RS3_op->Text = gcnew String(cur.inst.c_str());
+			this->RS3_v1->Text = cur.reg2.ToString();
+			this->RS3_v2->Text = cur.reg3.ToString();
+		}
+		else {
+			this->RS4_op->Text = gcnew String(cur.inst.c_str());
+			this->RS4_v1->Text = cur.reg2.ToString();
+			this->RS4_v2->Text = cur.reg3.ToString();
+		}
+	}
+}
+
+private: System::Void updateAddUnit() {
+	for (int i = 0; i < this->addUnit->size(); i++) {
+		instObj cur = this->addUnit->at(i);
+		if (i == 0) {
+			this->RS1_op->Text = gcnew String(cur.inst.c_str());
+			this->RS1_v1->Text = cur.reg2.ToString();
+			this->RS1_v2->Text = cur.reg3.ToString();
+		}
+		else {
+			this->RS2_op->Text = gcnew String(cur.inst.c_str());
+			this->RS2_v1->Text = cur.reg2.ToString();
+			this->RS2_v2->Text = cur.reg3.ToString();
+		}
 	}
 
 }
 
 private: System::Void updateClockCycle() {
 	curClockCycle = curClockCycle + 1;
+	this->current_clock->Text = curClockCycle.ToString();
 }
 
 

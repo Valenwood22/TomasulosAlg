@@ -24,3 +24,4 @@ Class TomasulosAlgorithm.Form1: AutoLayout, AnsiClass, Class, Public, BeforeFiel
     Int32 MAX_MUL_UNIT : Public
     std.vector<instObj\,std::allocator<instObj> >* mulUnit : Public
     Int32 curClockCycle : Public
+    std.vector<int\,std::allocator<int> >* regFilesA : Public
