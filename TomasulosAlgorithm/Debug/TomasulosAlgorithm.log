@@ -1,4 +1,6 @@
 ﻿  Form1.cpp
+N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2027,31): warning C4018: '<': signed/unsigned mismatch
+N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2037,30): warning C4018: '<': signed/unsigned mismatch
 N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.cpp(9,1): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
   Form1.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   TomasulosAlgorithm.vcxproj -> N:\TomasulosAlgorithm\Debug\TomasulosAlgorithm.exe

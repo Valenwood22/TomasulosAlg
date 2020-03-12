@@ -11,6 +11,7 @@ public:
     int reg1;
     int reg2;
     int reg3;
+    int CCToFinish;
 
     instObj(std::string inst, int reg1, int reg2, int reg3)
     {
@@ -18,8 +19,28 @@ public:
         this->reg1 = reg1;
         this->reg2 = reg2;
         this->reg3 = reg3;
+        this->CCToFinish = this->getCCToFinish(inst);
     }
     
+    int getCCToFinish(std::string inst) {
+        if (inst.compare("ADD") == 0) {
+            return 2;
+        }
+        else if(inst.compare("SUB") == 0) {
+            return 2;
+        }
+        else if(inst.compare("MUL") == 0) {
+            return 10;
+        }
+        else if(inst.compare("DIV") == 0) {
+            return 40;
+        }
+        else {
+            std::cout << "Inavalid Inst name";
+            return 100;
+        }
+
+    }
 
     // Member Functions() 
     std::string print()
