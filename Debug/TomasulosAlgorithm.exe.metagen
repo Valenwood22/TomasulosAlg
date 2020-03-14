@@ -19,6 +19,8 @@ Class TomasulosAlgorithm.Form1: AutoLayout, AnsiClass, Class, Public, BeforeFiel
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
     std.vector<instObj\,std::allocator<instObj> >* instList : Public
+    std.vector<instObj\,std::allocator<instObj> >* robVals : Public
+    Int32 curROB : Public
     Int32 MAX_ADD_UNIT : Public
     std.vector<instObj\,std::allocator<instObj> >* addUnit : Public
     Int32 MAX_MUL_UNIT : Public
