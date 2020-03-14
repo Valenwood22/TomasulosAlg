@@ -12,6 +12,8 @@ public:
     int reg2;
     int reg3;
     int CCToFinish;
+    int index;
+    bool isPlaceHolder;
 
     instObj(std::string inst, int reg1, int reg2, int reg3)
     {
@@ -19,6 +21,8 @@ public:
         this->reg1 = reg1;
         this->reg2 = reg2;
         this->reg3 = reg3;
+        this->index = -1;
+        bool isPlaceHolder = false;
         this->CCToFinish = this->getCCToFinish(inst);
     }
     

@@ -28,6 +28,8 @@ namespace TomasulosAlgorithm {
 		std::vector<instObj>* instList = new std::vector<instObj>;
 		std::vector<instObj>* robVals = new std::vector<instObj>;
 		int curROB = 0;
+		// Initiate broadcast
+		std::vector<instObj>* broadCastQ = new std::vector<instObj>;;
 
 		int MAX_ADD_UNIT = 3;
 		std::vector<instObj>* addUnit = new std::vector<instObj>;
@@ -2127,11 +2129,28 @@ private: System::Void QuickAddBtn_Click(System::Object^ sender, System::EventArg
 
 
 private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^ e) {
+
+
+
+	// Handle Broad Cast Queue
+	//-------------------------------------------------------------------------------------------------
+	if (this->broadCastQ->size() >= 1) {
+		instObj cur = this->broadCastQ->back();
+		this->broadCastQ->pop_back();
+		std::cout << "size of broadcast Q " << this->broadCastQ->size();
+		this->updateRAT(cur);
+		this->updateAddUnit();
+		this->updateMulUnit();
+	}
+
+
+
+
+
 	// Check if instr can be loaded
 	this->updateClockCycle();
 
-	// Initiate broadcast
-	std::vector<instObj> broadCastQ;
+
 
 	
 	// subtract clock cycles from inst and see if they can execute
@@ -2140,8 +2159,8 @@ private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^
 	for (curMul = this->mulUnit->begin(); curMul != this->mulUnit->end(); ++curMul) {
 		curMul->CCToFinish -= 1;
 		//std::cout << "Inst is at " << curMul->CCToFinish;
-		if (curMul->CCToFinish <= 0 && broadCastQ.size() == 0) {
-			broadCastQ.push_back(*curMul);
+		if (curMul->CCToFinish <= 0 && this->broadCastQ->size() == 0) {
+			this->broadCastQ->push_back(*curMul);
 			
 		}
 	}
@@ -2150,8 +2169,8 @@ private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^
 	for (curAdd = this->addUnit->begin(); curAdd != this->addUnit->end(); ++curAdd) {
 		curAdd->CCToFinish -= 1;
 		//std::cout << "Inst is at " << curAdd->CCToFinish;
-		if (curAdd->CCToFinish <= 0 && broadCastQ.size() == 0) {
-			broadCastQ.push_back(*curAdd);
+		if (curAdd->CCToFinish <= 0 && this->broadCastQ->size() == 0) {
+			this->broadCastQ->push_back(*curAdd);
 		}
 	}
 	
@@ -2192,15 +2211,6 @@ private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^
 	}
 
 
-	// Handle Broad Cast Queue
-	//-------------------------------------------------------------------------------------------------
-	if (broadCastQ.size() >= 1) {
-		instObj cur = broadCastQ.back();
-		broadCastQ.pop_back();
-		this->updateRAT(cur);
-		this->updateAddUnit();
-		this->updateMulUnit();
-	}
 
 
 }
@@ -2209,14 +2219,32 @@ private: System::Void updateMulUnit() {
 	for (int i = 0; i < mulUnit->size(); i++) {
 		instObj cur = mulUnit->at(i);
 		if (i == 0) {
-			this->RS3_op->Text = gcnew String(cur.inst.c_str());
-			this->RS3_v1->Text = cur.reg2.ToString();
-			this->RS3_v2->Text = cur.reg3.ToString();
+			if (cur.isPlaceHolder == true) {
+				this->RS3_op->Text = "";
+				this->RS3_v1->Text = "";
+				this->RS3_v2->Text = "";
+				cur.index = -1;
+			}
+			else {
+				this->RS3_op->Text = gcnew String(cur.inst.c_str());
+				this->RS3_v1->Text = cur.reg2.ToString();
+				this->RS3_v2->Text = cur.reg3.ToString();
+				cur.index = 3;
+			}
 		}
 		else {
-			this->RS4_op->Text = gcnew String(cur.inst.c_str());
-			this->RS4_v1->Text = cur.reg2.ToString();
-			this->RS4_v2->Text = cur.reg3.ToString();
+			if (cur.isPlaceHolder == true) {
+				this->RS4_op->Text = "";
+				this->RS4_v1->Text = "";
+				this->RS4_v2->Text = "";
+				cur.index = -1;
+			}
+			else {
+				this->RS4_op->Text = gcnew String(cur.inst.c_str());
+				this->RS4_v1->Text = cur.reg2.ToString();
+				this->RS4_v2->Text = cur.reg3.ToString();
+				cur.index = 4;
+			}
 		}
 	}
 }
@@ -2225,19 +2253,46 @@ private: System::Void updateAddUnit() {
 	for (int i = 0; i < this->addUnit->size(); i++) {
 		instObj cur = this->addUnit->at(i);
 		if (i == 0) {
-			this->RS0_op->Text = gcnew String(cur.inst.c_str());
-			this->RS0_v1->Text = cur.reg2.ToString();
-			this->RS0_v2->Text = cur.reg3.ToString();
+			if (cur.isPlaceHolder == true) {
+				this->RS0_op->Text = "";
+				this->RS0_v1->Text = "";
+				this->RS0_v2->Text = "";
+				cur.index = -1;
+			}
+			else {
+				this->RS0_op->Text = gcnew String(cur.inst.c_str());
+				this->RS0_v1->Text = cur.reg2.ToString();
+				this->RS0_v2->Text = cur.reg3.ToString();
+				cur.index = 0;
+			}
 		}
 		else if (i == 1) {
-			this->RS1_op->Text = gcnew String(cur.inst.c_str());
-			this->RS1_v1->Text = cur.reg2.ToString();
-			this->RS1_v2->Text = cur.reg3.ToString();
+			if (cur.isPlaceHolder == true) {
+				this->RS1_op->Text = "";
+				this->RS1_v1->Text = "";
+				this->RS1_v2->Text = "";
+				cur.index = -1;
+			}
+			else {
+				this->RS1_op->Text = gcnew String(cur.inst.c_str());
+				this->RS1_v1->Text = cur.reg2.ToString();
+				this->RS1_v2->Text = cur.reg3.ToString();
+				cur.index = 1;
+			}
 		}
 		else {
-			this->RS2_op->Text = gcnew String(cur.inst.c_str());
-			this->RS2_v1->Text = cur.reg2.ToString();
-			this->RS2_v2->Text = cur.reg3.ToString();
+			if (cur.isPlaceHolder == true) {
+				this->RS2_op->Text = "";
+				this->RS2_v1->Text = "";
+				this->RS2_v2->Text = "";
+				cur.index = -1;
+			}
+			else {
+				this->RS2_op->Text = gcnew String(cur.inst.c_str());
+				this->RS2_v1->Text = cur.reg2.ToString();
+				this->RS2_v2->Text = cur.reg3.ToString();
+				cur.index = 2;
+			}
 		}
 	}
 
@@ -2324,6 +2379,21 @@ private: System::Void updateRAT(instObj cur) {
 		this->curROB = 0;
 	}
 
+	for (int i = 0; i < this->addUnit->size(); i++) {
+		if (this->addUnit->at(i).index == cur.index) {
+			//this->addUnit->erase(this->addUnit->begin()+i);
+			this->addUnit->at(i).isPlaceHolder = true;
+			std::cout << cur.index;
+		}
+	}
+	for (int i = 0; i < this->mulUnit->size(); i++) {
+		if (this->mulUnit->at(i).index == cur.index) {
+			//this->mulUnit->erase(this->mulUnit->begin() + i);
+			this->addUnit->at(i).isPlaceHolder = true;
+		}
+	}
+	this->updateAddUnit();
+	this->updateMulUnit();
 }
 
 };

@@ -21,6 +21,7 @@ Class TomasulosAlgorithm.Form1: AutoLayout, AnsiClass, Class, Public, BeforeFiel
     std.vector<instObj\,std::allocator<instObj> >* instList : Public
     std.vector<instObj\,std::allocator<instObj> >* robVals : Public
     Int32 curROB : Public
+    std.vector<instObj\,std::allocator<instObj> >* broadCastQ : Public
     Int32 MAX_ADD_UNIT : Public
     std.vector<instObj\,std::allocator<instObj> >* addUnit : Public
     Int32 MAX_MUL_UNIT : Public
