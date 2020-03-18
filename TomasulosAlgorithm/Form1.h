@@ -6,6 +6,9 @@
 #include <string>
 #include <array>
 #include <algorithm>
+#include <windows.h>
+
+
 
 
 namespace TomasulosAlgorithm {
@@ -40,7 +43,10 @@ namespace TomasulosAlgorithm {
 
 
 		std::vector<int>* regFilesA = new std::vector<int>;
+	private: System::Windows::Forms::Label^ label18;
+	public:
 
+		bool isRunning = false;
 
 
 
@@ -144,26 +150,26 @@ private: System::Windows::Forms::TextBox^ RegF9;
 
 
 
-	private: System::Windows::Forms::Label^ label18;
-	private: System::Windows::Forms::TextBox^ RF_r6;
-
-	private: System::Windows::Forms::TextBox^ RF_r5;
-
-	private: System::Windows::Forms::TextBox^ RF_r4;
-
-	private: System::Windows::Forms::TextBox^ RF_r3;
-
-	private: System::Windows::Forms::TextBox^ RF_r2;
-
-	private: System::Windows::Forms::TextBox^ RF_r1;
-
-	private: System::Windows::Forms::TextBox^ RF_r0;
-	private: System::Windows::Forms::TextBox^ RF_r8;
 
 
 
-	private: System::Windows::Forms::TextBox^ RF_r7;
-	private: System::Windows::Forms::TextBox^ RF_r9;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	private: System::Windows::Forms::Label^ label19;
 	private: System::Windows::Forms::TextBox^ Rat_r9;
 
@@ -382,17 +388,6 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->RegF7 = (gcnew System::Windows::Forms::TextBox());
 			this->RegF8 = (gcnew System::Windows::Forms::TextBox());
 			this->RegF9 = (gcnew System::Windows::Forms::TextBox());
-			this->label18 = (gcnew System::Windows::Forms::Label());
-			this->RF_r6 = (gcnew System::Windows::Forms::TextBox());
-			this->RF_r5 = (gcnew System::Windows::Forms::TextBox());
-			this->RF_r4 = (gcnew System::Windows::Forms::TextBox());
-			this->RF_r3 = (gcnew System::Windows::Forms::TextBox());
-			this->RF_r2 = (gcnew System::Windows::Forms::TextBox());
-			this->RF_r1 = (gcnew System::Windows::Forms::TextBox());
-			this->RF_r0 = (gcnew System::Windows::Forms::TextBox());
-			this->RF_r8 = (gcnew System::Windows::Forms::TextBox());
-			this->RF_r7 = (gcnew System::Windows::Forms::TextBox());
-			this->RF_r9 = (gcnew System::Windows::Forms::TextBox());
 			this->label19 = (gcnew System::Windows::Forms::Label());
 			this->Rat_r9 = (gcnew System::Windows::Forms::TextBox());
 			this->Rat_r7 = (gcnew System::Windows::Forms::TextBox());
@@ -502,6 +497,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->RS0_t1 = (gcnew System::Windows::Forms::TextBox());
 			this->RS0_op = (gcnew System::Windows::Forms::TextBox());
 			this->label23 = (gcnew System::Windows::Forms::Label());
+			this->label18 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->reg1UD))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->reg2UD))->BeginInit();
@@ -529,7 +525,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(28, 262);
+			this->label9->Location = System::Drawing::Point(56, 253);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(47, 13);
 			this->label9->TabIndex = 11;
@@ -571,6 +567,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->button2->TabIndex = 15;
 			this->button2->Text = L"Run";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &Form1::button2_Click);
 			// 
 			// button3
 			// 
@@ -662,7 +659,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(12, 287);
+			this->label1->Location = System::Drawing::Point(9, 300);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(21, 13);
 			this->label1->TabIndex = 26;
@@ -671,7 +668,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(12, 313);
+			this->label2->Location = System::Drawing::Point(9, 326);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(21, 13);
 			this->label2->TabIndex = 27;
@@ -680,7 +677,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(12, 339);
+			this->label3->Location = System::Drawing::Point(9, 352);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(21, 13);
 			this->label3->TabIndex = 28;
@@ -689,7 +686,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(12, 365);
+			this->label4->Location = System::Drawing::Point(9, 378);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(21, 13);
 			this->label4->TabIndex = 29;
@@ -698,7 +695,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(12, 391);
+			this->label5->Location = System::Drawing::Point(9, 404);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(21, 13);
 			this->label5->TabIndex = 30;
@@ -707,7 +704,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(12, 414);
+			this->label6->Location = System::Drawing::Point(9, 427);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(21, 13);
 			this->label6->TabIndex = 31;
@@ -716,7 +713,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(12, 440);
+			this->label7->Location = System::Drawing::Point(9, 453);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(21, 13);
 			this->label7->TabIndex = 32;
@@ -725,7 +722,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// label15
 			// 
 			this->label15->AutoSize = true;
-			this->label15->Location = System::Drawing::Point(12, 468);
+			this->label15->Location = System::Drawing::Point(9, 481);
 			this->label15->Name = L"label15";
 			this->label15->Size = System::Drawing::Size(21, 13);
 			this->label15->TabIndex = 33;
@@ -734,7 +731,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// label16
 			// 
 			this->label16->AutoSize = true;
-			this->label16->Location = System::Drawing::Point(12, 492);
+			this->label16->Location = System::Drawing::Point(9, 505);
 			this->label16->Name = L"label16";
 			this->label16->Size = System::Drawing::Size(21, 13);
 			this->label16->TabIndex = 34;
@@ -743,7 +740,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// label17
 			// 
 			this->label17->AutoSize = true;
-			this->label17->Location = System::Drawing::Point(12, 521);
+			this->label17->Location = System::Drawing::Point(9, 534);
 			this->label17->Name = L"label17";
 			this->label17->Size = System::Drawing::Size(21, 13);
 			this->label17->TabIndex = 35;
@@ -751,197 +748,98 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// RegF0
 			// 
-			this->RegF0->Location = System::Drawing::Point(39, 284);
+			this->RegF0->Location = System::Drawing::Point(36, 297);
 			this->RegF0->Name = L"RegF0";
 			this->RegF0->ReadOnly = true;
-			this->RegF0->Size = System::Drawing::Size(33, 20);
+			this->RegF0->Size = System::Drawing::Size(41, 20);
 			this->RegF0->TabIndex = 36;
 			this->RegF0->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// RegF1
 			// 
-			this->RegF1->Location = System::Drawing::Point(39, 310);
+			this->RegF1->Location = System::Drawing::Point(36, 323);
 			this->RegF1->Name = L"RegF1";
 			this->RegF1->ReadOnly = true;
-			this->RegF1->Size = System::Drawing::Size(33, 20);
+			this->RegF1->Size = System::Drawing::Size(41, 20);
 			this->RegF1->TabIndex = 37;
 			this->RegF1->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// RegF2
 			// 
-			this->RegF2->Location = System::Drawing::Point(39, 336);
+			this->RegF2->Location = System::Drawing::Point(36, 349);
 			this->RegF2->Name = L"RegF2";
 			this->RegF2->ReadOnly = true;
-			this->RegF2->Size = System::Drawing::Size(33, 20);
+			this->RegF2->Size = System::Drawing::Size(41, 20);
 			this->RegF2->TabIndex = 38;
 			this->RegF2->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// RegF3
 			// 
-			this->RegF3->Location = System::Drawing::Point(39, 362);
+			this->RegF3->Location = System::Drawing::Point(36, 375);
 			this->RegF3->Name = L"RegF3";
 			this->RegF3->ReadOnly = true;
-			this->RegF3->Size = System::Drawing::Size(33, 20);
+			this->RegF3->Size = System::Drawing::Size(41, 20);
 			this->RegF3->TabIndex = 39;
 			this->RegF3->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// RegF4
 			// 
-			this->RegF4->Location = System::Drawing::Point(39, 388);
+			this->RegF4->Location = System::Drawing::Point(36, 401);
 			this->RegF4->Name = L"RegF4";
 			this->RegF4->ReadOnly = true;
-			this->RegF4->Size = System::Drawing::Size(33, 20);
+			this->RegF4->Size = System::Drawing::Size(41, 20);
 			this->RegF4->TabIndex = 40;
 			this->RegF4->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// RegF5
 			// 
-			this->RegF5->Location = System::Drawing::Point(39, 414);
+			this->RegF5->Location = System::Drawing::Point(36, 427);
 			this->RegF5->Name = L"RegF5";
 			this->RegF5->ReadOnly = true;
-			this->RegF5->Size = System::Drawing::Size(33, 20);
+			this->RegF5->Size = System::Drawing::Size(41, 20);
 			this->RegF5->TabIndex = 41;
 			this->RegF5->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// RegF6
 			// 
-			this->RegF6->Location = System::Drawing::Point(39, 440);
+			this->RegF6->Location = System::Drawing::Point(36, 453);
 			this->RegF6->Name = L"RegF6";
 			this->RegF6->ReadOnly = true;
-			this->RegF6->Size = System::Drawing::Size(33, 20);
+			this->RegF6->Size = System::Drawing::Size(41, 20);
 			this->RegF6->TabIndex = 42;
 			this->RegF6->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// RegF7
 			// 
-			this->RegF7->Location = System::Drawing::Point(39, 466);
+			this->RegF7->Location = System::Drawing::Point(36, 479);
 			this->RegF7->Name = L"RegF7";
 			this->RegF7->ReadOnly = true;
-			this->RegF7->Size = System::Drawing::Size(33, 20);
+			this->RegF7->Size = System::Drawing::Size(41, 20);
 			this->RegF7->TabIndex = 43;
 			this->RegF7->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// RegF8
 			// 
-			this->RegF8->Location = System::Drawing::Point(39, 492);
+			this->RegF8->Location = System::Drawing::Point(36, 505);
 			this->RegF8->Name = L"RegF8";
 			this->RegF8->ReadOnly = true;
-			this->RegF8->Size = System::Drawing::Size(33, 20);
+			this->RegF8->Size = System::Drawing::Size(41, 20);
 			this->RegF8->TabIndex = 44;
 			this->RegF8->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// RegF9
 			// 
-			this->RegF9->Location = System::Drawing::Point(39, 518);
+			this->RegF9->Location = System::Drawing::Point(36, 531);
 			this->RegF9->Name = L"RegF9";
 			this->RegF9->ReadOnly = true;
-			this->RegF9->Size = System::Drawing::Size(33, 20);
+			this->RegF9->Size = System::Drawing::Size(41, 20);
 			this->RegF9->TabIndex = 45;
 			this->RegF9->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			// 
-			// label18
-			// 
-			this->label18->AutoSize = true;
-			this->label18->Location = System::Drawing::Point(79, 262);
-			this->label18->Name = L"label18";
-			this->label18->Size = System::Drawing::Size(24, 13);
-			this->label18->TabIndex = 46;
-			this->label18->Text = L"RF:";
-			// 
-			// RF_r6
-			// 
-			this->RF_r6->Location = System::Drawing::Point(82, 440);
-			this->RF_r6->Name = L"RF_r6";
-			this->RF_r6->ReadOnly = true;
-			this->RF_r6->Size = System::Drawing::Size(33, 20);
-			this->RF_r6->TabIndex = 47;
-			this->RF_r6->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			// 
-			// RF_r5
-			// 
-			this->RF_r5->Location = System::Drawing::Point(82, 414);
-			this->RF_r5->Name = L"RF_r5";
-			this->RF_r5->ReadOnly = true;
-			this->RF_r5->Size = System::Drawing::Size(33, 20);
-			this->RF_r5->TabIndex = 48;
-			this->RF_r5->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			// 
-			// RF_r4
-			// 
-			this->RF_r4->Location = System::Drawing::Point(82, 388);
-			this->RF_r4->Name = L"RF_r4";
-			this->RF_r4->ReadOnly = true;
-			this->RF_r4->Size = System::Drawing::Size(33, 20);
-			this->RF_r4->TabIndex = 49;
-			this->RF_r4->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			// 
-			// RF_r3
-			// 
-			this->RF_r3->Location = System::Drawing::Point(82, 362);
-			this->RF_r3->Name = L"RF_r3";
-			this->RF_r3->ReadOnly = true;
-			this->RF_r3->Size = System::Drawing::Size(33, 20);
-			this->RF_r3->TabIndex = 50;
-			this->RF_r3->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			// 
-			// RF_r2
-			// 
-			this->RF_r2->Location = System::Drawing::Point(82, 336);
-			this->RF_r2->Name = L"RF_r2";
-			this->RF_r2->ReadOnly = true;
-			this->RF_r2->Size = System::Drawing::Size(33, 20);
-			this->RF_r2->TabIndex = 51;
-			this->RF_r2->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			// 
-			// RF_r1
-			// 
-			this->RF_r1->Location = System::Drawing::Point(82, 310);
-			this->RF_r1->Name = L"RF_r1";
-			this->RF_r1->ReadOnly = true;
-			this->RF_r1->Size = System::Drawing::Size(33, 20);
-			this->RF_r1->TabIndex = 52;
-			this->RF_r1->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			// 
-			// RF_r0
-			// 
-			this->RF_r0->Location = System::Drawing::Point(82, 284);
-			this->RF_r0->Name = L"RF_r0";
-			this->RF_r0->ReadOnly = true;
-			this->RF_r0->Size = System::Drawing::Size(33, 20);
-			this->RF_r0->TabIndex = 53;
-			this->RF_r0->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			// 
-			// RF_r8
-			// 
-			this->RF_r8->Location = System::Drawing::Point(82, 492);
-			this->RF_r8->Name = L"RF_r8";
-			this->RF_r8->ReadOnly = true;
-			this->RF_r8->Size = System::Drawing::Size(33, 20);
-			this->RF_r8->TabIndex = 54;
-			this->RF_r8->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			// 
-			// RF_r7
-			// 
-			this->RF_r7->Location = System::Drawing::Point(82, 466);
-			this->RF_r7->Name = L"RF_r7";
-			this->RF_r7->ReadOnly = true;
-			this->RF_r7->Size = System::Drawing::Size(33, 20);
-			this->RF_r7->TabIndex = 55;
-			this->RF_r7->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			// 
-			// RF_r9
-			// 
-			this->RF_r9->Location = System::Drawing::Point(82, 518);
-			this->RF_r9->Name = L"RF_r9";
-			this->RF_r9->ReadOnly = true;
-			this->RF_r9->Size = System::Drawing::Size(33, 20);
-			this->RF_r9->TabIndex = 56;
-			this->RF_r9->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// label19
 			// 
 			this->label19->AutoSize = true;
-			this->label19->Location = System::Drawing::Point(123, 262);
+			this->label19->Location = System::Drawing::Point(88, 275);
 			this->label19->Name = L"label19";
 			this->label19->Size = System::Drawing::Size(32, 13);
 			this->label19->TabIndex = 57;
@@ -949,7 +847,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Rat_r9
 			// 
-			this->Rat_r9->Location = System::Drawing::Point(126, 518);
+			this->Rat_r9->Location = System::Drawing::Point(87, 531);
 			this->Rat_r9->Name = L"Rat_r9";
 			this->Rat_r9->ReadOnly = true;
 			this->Rat_r9->Size = System::Drawing::Size(33, 20);
@@ -958,7 +856,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Rat_r7
 			// 
-			this->Rat_r7->Location = System::Drawing::Point(126, 465);
+			this->Rat_r7->Location = System::Drawing::Point(87, 478);
 			this->Rat_r7->Name = L"Rat_r7";
 			this->Rat_r7->ReadOnly = true;
 			this->Rat_r7->Size = System::Drawing::Size(33, 20);
@@ -967,7 +865,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Rat_r8
 			// 
-			this->Rat_r8->Location = System::Drawing::Point(126, 492);
+			this->Rat_r8->Location = System::Drawing::Point(87, 505);
 			this->Rat_r8->Name = L"Rat_r8";
 			this->Rat_r8->ReadOnly = true;
 			this->Rat_r8->Size = System::Drawing::Size(33, 20);
@@ -976,7 +874,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Rat_r0
 			// 
-			this->Rat_r0->Location = System::Drawing::Point(126, 284);
+			this->Rat_r0->Location = System::Drawing::Point(87, 297);
 			this->Rat_r0->Name = L"Rat_r0";
 			this->Rat_r0->ReadOnly = true;
 			this->Rat_r0->Size = System::Drawing::Size(33, 20);
@@ -985,7 +883,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Rat_r1
 			// 
-			this->Rat_r1->Location = System::Drawing::Point(126, 310);
+			this->Rat_r1->Location = System::Drawing::Point(87, 323);
 			this->Rat_r1->Name = L"Rat_r1";
 			this->Rat_r1->ReadOnly = true;
 			this->Rat_r1->Size = System::Drawing::Size(33, 20);
@@ -994,7 +892,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Rat_r2
 			// 
-			this->Rat_r2->Location = System::Drawing::Point(126, 336);
+			this->Rat_r2->Location = System::Drawing::Point(87, 349);
 			this->Rat_r2->Name = L"Rat_r2";
 			this->Rat_r2->ReadOnly = true;
 			this->Rat_r2->Size = System::Drawing::Size(33, 20);
@@ -1003,7 +901,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Rat_r3
 			// 
-			this->Rat_r3->Location = System::Drawing::Point(126, 362);
+			this->Rat_r3->Location = System::Drawing::Point(87, 375);
 			this->Rat_r3->Name = L"Rat_r3";
 			this->Rat_r3->ReadOnly = true;
 			this->Rat_r3->Size = System::Drawing::Size(33, 20);
@@ -1012,7 +910,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Rat_r4
 			// 
-			this->Rat_r4->Location = System::Drawing::Point(126, 388);
+			this->Rat_r4->Location = System::Drawing::Point(87, 401);
 			this->Rat_r4->Name = L"Rat_r4";
 			this->Rat_r4->ReadOnly = true;
 			this->Rat_r4->Size = System::Drawing::Size(33, 20);
@@ -1021,7 +919,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Rat_r5
 			// 
-			this->Rat_r5->Location = System::Drawing::Point(126, 414);
+			this->Rat_r5->Location = System::Drawing::Point(87, 427);
 			this->Rat_r5->Name = L"Rat_r5";
 			this->Rat_r5->ReadOnly = true;
 			this->Rat_r5->Size = System::Drawing::Size(33, 20);
@@ -1030,7 +928,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Rat_r6
 			// 
-			this->Rat_r6->Location = System::Drawing::Point(126, 440);
+			this->Rat_r6->Location = System::Drawing::Point(87, 453);
 			this->Rat_r6->Name = L"Rat_r6";
 			this->Rat_r6->ReadOnly = true;
 			this->Rat_r6->Size = System::Drawing::Size(33, 20);
@@ -1391,7 +1289,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// Current_clock_cycle
 			// 
 			this->Current_clock_cycle->AutoSize = true;
-			this->Current_clock_cycle->Location = System::Drawing::Point(20, 569);
+			this->Current_clock_cycle->Location = System::Drawing::Point(17, 582);
 			this->Current_clock_cycle->Name = L"Current_clock_cycle";
 			this->Current_clock_cycle->Size = System::Drawing::Size(100, 13);
 			this->Current_clock_cycle->TabIndex = 108;
@@ -1400,7 +1298,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// current_clock
 			// 
 			this->current_clock->AcceptsReturn = true;
-			this->current_clock->Location = System::Drawing::Point(126, 562);
+			this->current_clock->Location = System::Drawing::Point(123, 575);
 			this->current_clock->Name = L"current_clock";
 			this->current_clock->ReadOnly = true;
 			this->current_clock->Size = System::Drawing::Size(46, 20);
@@ -1418,7 +1316,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Dest9
 			// 
-			this->Dest9->Location = System::Drawing::Point(219, 518);
+			this->Dest9->Location = System::Drawing::Point(216, 531);
 			this->Dest9->Name = L"Dest9";
 			this->Dest9->ReadOnly = true;
 			this->Dest9->Size = System::Drawing::Size(33, 20);
@@ -1427,7 +1325,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Dest7
 			// 
-			this->Dest7->Location = System::Drawing::Point(219, 465);
+			this->Dest7->Location = System::Drawing::Point(216, 478);
 			this->Dest7->Name = L"Dest7";
 			this->Dest7->ReadOnly = true;
 			this->Dest7->Size = System::Drawing::Size(33, 20);
@@ -1436,7 +1334,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Dest8
 			// 
-			this->Dest8->Location = System::Drawing::Point(219, 492);
+			this->Dest8->Location = System::Drawing::Point(216, 505);
 			this->Dest8->Name = L"Dest8";
 			this->Dest8->ReadOnly = true;
 			this->Dest8->Size = System::Drawing::Size(33, 20);
@@ -1445,7 +1343,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Dest0
 			// 
-			this->Dest0->Location = System::Drawing::Point(219, 284);
+			this->Dest0->Location = System::Drawing::Point(216, 297);
 			this->Dest0->Name = L"Dest0";
 			this->Dest0->ReadOnly = true;
 			this->Dest0->Size = System::Drawing::Size(33, 20);
@@ -1454,7 +1352,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Dest1
 			// 
-			this->Dest1->Location = System::Drawing::Point(219, 310);
+			this->Dest1->Location = System::Drawing::Point(216, 323);
 			this->Dest1->Name = L"Dest1";
 			this->Dest1->ReadOnly = true;
 			this->Dest1->Size = System::Drawing::Size(33, 20);
@@ -1463,7 +1361,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Dest2
 			// 
-			this->Dest2->Location = System::Drawing::Point(219, 336);
+			this->Dest2->Location = System::Drawing::Point(216, 349);
 			this->Dest2->Name = L"Dest2";
 			this->Dest2->ReadOnly = true;
 			this->Dest2->Size = System::Drawing::Size(33, 20);
@@ -1472,7 +1370,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Dest3
 			// 
-			this->Dest3->Location = System::Drawing::Point(219, 362);
+			this->Dest3->Location = System::Drawing::Point(216, 375);
 			this->Dest3->Name = L"Dest3";
 			this->Dest3->ReadOnly = true;
 			this->Dest3->Size = System::Drawing::Size(33, 20);
@@ -1481,7 +1379,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Dest4
 			// 
-			this->Dest4->Location = System::Drawing::Point(219, 388);
+			this->Dest4->Location = System::Drawing::Point(216, 401);
 			this->Dest4->Name = L"Dest4";
 			this->Dest4->ReadOnly = true;
 			this->Dest4->Size = System::Drawing::Size(33, 20);
@@ -1490,7 +1388,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Dest5
 			// 
-			this->Dest5->Location = System::Drawing::Point(219, 414);
+			this->Dest5->Location = System::Drawing::Point(216, 427);
 			this->Dest5->Name = L"Dest5";
 			this->Dest5->ReadOnly = true;
 			this->Dest5->Size = System::Drawing::Size(33, 20);
@@ -1499,7 +1397,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Dest6
 			// 
-			this->Dest6->Location = System::Drawing::Point(219, 440);
+			this->Dest6->Location = System::Drawing::Point(216, 453);
 			this->Dest6->Name = L"Dest6";
 			this->Dest6->ReadOnly = true;
 			this->Dest6->Size = System::Drawing::Size(33, 20);
@@ -1509,7 +1407,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// Rob9
 			// 
 			this->Rob9->AutoSize = true;
-			this->Rob9->Location = System::Drawing::Point(180, 521);
+			this->Rob9->Location = System::Drawing::Point(177, 534);
 			this->Rob9->Name = L"Rob9";
 			this->Rob9->Size = System::Drawing::Size(33, 13);
 			this->Rob9->TabIndex = 130;
@@ -1518,7 +1416,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// Rob8
 			// 
 			this->Rob8->AutoSize = true;
-			this->Rob8->Location = System::Drawing::Point(180, 492);
+			this->Rob8->Location = System::Drawing::Point(177, 505);
 			this->Rob8->Name = L"Rob8";
 			this->Rob8->Size = System::Drawing::Size(33, 13);
 			this->Rob8->TabIndex = 129;
@@ -1527,7 +1425,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// Rob7
 			// 
 			this->Rob7->AutoSize = true;
-			this->Rob7->Location = System::Drawing::Point(180, 468);
+			this->Rob7->Location = System::Drawing::Point(177, 481);
 			this->Rob7->Name = L"Rob7";
 			this->Rob7->Size = System::Drawing::Size(33, 13);
 			this->Rob7->TabIndex = 128;
@@ -1536,7 +1434,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// Rob6
 			// 
 			this->Rob6->AutoSize = true;
-			this->Rob6->Location = System::Drawing::Point(180, 440);
+			this->Rob6->Location = System::Drawing::Point(177, 453);
 			this->Rob6->Name = L"Rob6";
 			this->Rob6->Size = System::Drawing::Size(33, 13);
 			this->Rob6->TabIndex = 127;
@@ -1545,7 +1443,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// Rob5
 			// 
 			this->Rob5->AutoSize = true;
-			this->Rob5->Location = System::Drawing::Point(180, 414);
+			this->Rob5->Location = System::Drawing::Point(177, 427);
 			this->Rob5->Name = L"Rob5";
 			this->Rob5->Size = System::Drawing::Size(33, 13);
 			this->Rob5->TabIndex = 126;
@@ -1554,7 +1452,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// Rob4
 			// 
 			this->Rob4->AutoSize = true;
-			this->Rob4->Location = System::Drawing::Point(180, 391);
+			this->Rob4->Location = System::Drawing::Point(177, 404);
 			this->Rob4->Name = L"Rob4";
 			this->Rob4->Size = System::Drawing::Size(33, 13);
 			this->Rob4->TabIndex = 125;
@@ -1563,7 +1461,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// Rob3
 			// 
 			this->Rob3->AutoSize = true;
-			this->Rob3->Location = System::Drawing::Point(180, 365);
+			this->Rob3->Location = System::Drawing::Point(177, 378);
 			this->Rob3->Name = L"Rob3";
 			this->Rob3->Size = System::Drawing::Size(33, 13);
 			this->Rob3->TabIndex = 124;
@@ -1572,7 +1470,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// Rob2
 			// 
 			this->Rob2->AutoSize = true;
-			this->Rob2->Location = System::Drawing::Point(180, 339);
+			this->Rob2->Location = System::Drawing::Point(177, 352);
 			this->Rob2->Name = L"Rob2";
 			this->Rob2->Size = System::Drawing::Size(33, 13);
 			this->Rob2->TabIndex = 123;
@@ -1581,7 +1479,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// Rob1
 			// 
 			this->Rob1->AutoSize = true;
-			this->Rob1->Location = System::Drawing::Point(180, 313);
+			this->Rob1->Location = System::Drawing::Point(177, 326);
 			this->Rob1->Name = L"Rob1";
 			this->Rob1->Size = System::Drawing::Size(33, 13);
 			this->Rob1->TabIndex = 122;
@@ -1590,7 +1488,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// Rob0
 			// 
 			this->Rob0->AutoSize = true;
-			this->Rob0->Location = System::Drawing::Point(180, 287);
+			this->Rob0->Location = System::Drawing::Point(177, 300);
 			this->Rob0->Name = L"Rob0";
 			this->Rob0->Size = System::Drawing::Size(33, 13);
 			this->Rob0->TabIndex = 121;
@@ -1625,7 +1523,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Val9
 			// 
-			this->Val9->Location = System::Drawing::Point(264, 518);
+			this->Val9->Location = System::Drawing::Point(261, 531);
 			this->Val9->Name = L"Val9";
 			this->Val9->ReadOnly = true;
 			this->Val9->Size = System::Drawing::Size(33, 20);
@@ -1634,7 +1532,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Val7
 			// 
-			this->Val7->Location = System::Drawing::Point(264, 465);
+			this->Val7->Location = System::Drawing::Point(261, 478);
 			this->Val7->Name = L"Val7";
 			this->Val7->ReadOnly = true;
 			this->Val7->Size = System::Drawing::Size(33, 20);
@@ -1643,7 +1541,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Val8
 			// 
-			this->Val8->Location = System::Drawing::Point(264, 492);
+			this->Val8->Location = System::Drawing::Point(261, 505);
 			this->Val8->Name = L"Val8";
 			this->Val8->ReadOnly = true;
 			this->Val8->Size = System::Drawing::Size(33, 20);
@@ -1652,7 +1550,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Val0
 			// 
-			this->Val0->Location = System::Drawing::Point(264, 284);
+			this->Val0->Location = System::Drawing::Point(261, 297);
 			this->Val0->Name = L"Val0";
 			this->Val0->ReadOnly = true;
 			this->Val0->Size = System::Drawing::Size(33, 20);
@@ -1661,7 +1559,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Val1
 			// 
-			this->Val1->Location = System::Drawing::Point(264, 310);
+			this->Val1->Location = System::Drawing::Point(261, 323);
 			this->Val1->Name = L"Val1";
 			this->Val1->ReadOnly = true;
 			this->Val1->Size = System::Drawing::Size(33, 20);
@@ -1670,7 +1568,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Val2
 			// 
-			this->Val2->Location = System::Drawing::Point(264, 336);
+			this->Val2->Location = System::Drawing::Point(261, 349);
 			this->Val2->Name = L"Val2";
 			this->Val2->ReadOnly = true;
 			this->Val2->Size = System::Drawing::Size(33, 20);
@@ -1679,7 +1577,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Val3
 			// 
-			this->Val3->Location = System::Drawing::Point(264, 362);
+			this->Val3->Location = System::Drawing::Point(261, 375);
 			this->Val3->Name = L"Val3";
 			this->Val3->ReadOnly = true;
 			this->Val3->Size = System::Drawing::Size(33, 20);
@@ -1688,7 +1586,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Val4
 			// 
-			this->Val4->Location = System::Drawing::Point(264, 388);
+			this->Val4->Location = System::Drawing::Point(261, 401);
 			this->Val4->Name = L"Val4";
 			this->Val4->ReadOnly = true;
 			this->Val4->Size = System::Drawing::Size(33, 20);
@@ -1697,7 +1595,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Val5
 			// 
-			this->Val5->Location = System::Drawing::Point(264, 414);
+			this->Val5->Location = System::Drawing::Point(261, 427);
 			this->Val5->Name = L"Val5";
 			this->Val5->ReadOnly = true;
 			this->Val5->Size = System::Drawing::Size(33, 20);
@@ -1706,7 +1604,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Val6
 			// 
-			this->Val6->Location = System::Drawing::Point(264, 440);
+			this->Val6->Location = System::Drawing::Point(261, 453);
 			this->Val6->Name = L"Val6";
 			this->Val6->ReadOnly = true;
 			this->Val6->Size = System::Drawing::Size(33, 20);
@@ -1715,7 +1613,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Done9
 			// 
-			this->Done9->Location = System::Drawing::Point(308, 518);
+			this->Done9->Location = System::Drawing::Point(305, 531);
 			this->Done9->Name = L"Done9";
 			this->Done9->ReadOnly = true;
 			this->Done9->Size = System::Drawing::Size(33, 20);
@@ -1724,7 +1622,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Done7
 			// 
-			this->Done7->Location = System::Drawing::Point(308, 465);
+			this->Done7->Location = System::Drawing::Point(305, 478);
 			this->Done7->Name = L"Done7";
 			this->Done7->ReadOnly = true;
 			this->Done7->Size = System::Drawing::Size(33, 20);
@@ -1733,7 +1631,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Done8
 			// 
-			this->Done8->Location = System::Drawing::Point(308, 492);
+			this->Done8->Location = System::Drawing::Point(305, 505);
 			this->Done8->Name = L"Done8";
 			this->Done8->ReadOnly = true;
 			this->Done8->Size = System::Drawing::Size(33, 20);
@@ -1742,7 +1640,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Done0
 			// 
-			this->Done0->Location = System::Drawing::Point(308, 284);
+			this->Done0->Location = System::Drawing::Point(305, 297);
 			this->Done0->Name = L"Done0";
 			this->Done0->ReadOnly = true;
 			this->Done0->Size = System::Drawing::Size(33, 20);
@@ -1751,7 +1649,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Done1
 			// 
-			this->Done1->Location = System::Drawing::Point(308, 310);
+			this->Done1->Location = System::Drawing::Point(305, 323);
 			this->Done1->Name = L"Done1";
 			this->Done1->ReadOnly = true;
 			this->Done1->Size = System::Drawing::Size(33, 20);
@@ -1760,7 +1658,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Done2
 			// 
-			this->Done2->Location = System::Drawing::Point(308, 336);
+			this->Done2->Location = System::Drawing::Point(305, 349);
 			this->Done2->Name = L"Done2";
 			this->Done2->ReadOnly = true;
 			this->Done2->Size = System::Drawing::Size(33, 20);
@@ -1769,7 +1667,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Done3
 			// 
-			this->Done3->Location = System::Drawing::Point(308, 362);
+			this->Done3->Location = System::Drawing::Point(305, 375);
 			this->Done3->Name = L"Done3";
 			this->Done3->ReadOnly = true;
 			this->Done3->Size = System::Drawing::Size(33, 20);
@@ -1778,7 +1676,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Done4
 			// 
-			this->Done4->Location = System::Drawing::Point(308, 388);
+			this->Done4->Location = System::Drawing::Point(305, 401);
 			this->Done4->Name = L"Done4";
 			this->Done4->ReadOnly = true;
 			this->Done4->Size = System::Drawing::Size(33, 20);
@@ -1787,7 +1685,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Done5
 			// 
-			this->Done5->Location = System::Drawing::Point(308, 414);
+			this->Done5->Location = System::Drawing::Point(305, 427);
 			this->Done5->Name = L"Done5";
 			this->Done5->ReadOnly = true;
 			this->Done5->Size = System::Drawing::Size(33, 20);
@@ -1796,7 +1694,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// Done6
 			// 
-			this->Done6->Location = System::Drawing::Point(308, 440);
+			this->Done6->Location = System::Drawing::Point(305, 453);
 			this->Done6->Name = L"Done6";
 			this->Done6->ReadOnly = true;
 			this->Done6->Size = System::Drawing::Size(33, 20);
@@ -1806,7 +1704,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// label24
 			// 
 			this->label24->AutoSize = true;
-			this->label24->Location = System::Drawing::Point(216, 262);
+			this->label24->Location = System::Drawing::Point(213, 275);
 			this->label24->Name = L"label24";
 			this->label24->Size = System::Drawing::Size(29, 13);
 			this->label24->TabIndex = 155;
@@ -1815,7 +1713,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// label25
 			// 
 			this->label25->AutoSize = true;
-			this->label25->Location = System::Drawing::Point(262, 262);
+			this->label25->Location = System::Drawing::Point(259, 275);
 			this->label25->Name = L"label25";
 			this->label25->Size = System::Drawing::Size(22, 13);
 			this->label25->TabIndex = 156;
@@ -1824,7 +1722,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// label26
 			// 
 			this->label26->AutoSize = true;
-			this->label26->Location = System::Drawing::Point(305, 262);
+			this->label26->Location = System::Drawing::Point(302, 275);
 			this->label26->Name = L"label26";
 			this->label26->Size = System::Drawing::Size(33, 13);
 			this->label26->TabIndex = 157;
@@ -1921,6 +1819,15 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->label23->Size = System::Drawing::Size(28, 13);
 			this->label23->TabIndex = 160;
 			this->label23->Text = L"RS0";
+			// 
+			// label18
+			// 
+			this->label18->AutoSize = true;
+			this->label18->Location = System::Drawing::Point(42, 275);
+			this->label18->Name = L"label18";
+			this->label18->Size = System::Drawing::Size(24, 13);
+			this->label18->TabIndex = 46;
+			this->label18->Text = L"RF:";
 			// 
 			// Form1
 			// 
@@ -2036,16 +1943,6 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->Controls->Add(this->Rat_r5);
 			this->Controls->Add(this->Rat_r6);
 			this->Controls->Add(this->label19);
-			this->Controls->Add(this->RF_r9);
-			this->Controls->Add(this->RF_r7);
-			this->Controls->Add(this->RF_r8);
-			this->Controls->Add(this->RF_r0);
-			this->Controls->Add(this->RF_r1);
-			this->Controls->Add(this->RF_r2);
-			this->Controls->Add(this->RF_r3);
-			this->Controls->Add(this->RF_r4);
-			this->Controls->Add(this->RF_r5);
-			this->Controls->Add(this->RF_r6);
 			this->Controls->Add(this->label18);
 			this->Controls->Add(this->RegF9);
 			this->Controls->Add(this->RegF8);
@@ -2112,24 +2009,28 @@ private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^
 
 private: System::Void QuickAddBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	this->instList->push_back(instObj("ADD", 1, 2, 3));
-	this->instList->push_back(instObj("SUB", 4, 5, 6));
-	this->instList->push_back(instObj("DIV", 3, 4, 5));
-	this->instList->push_back(instObj("MUL", 2, 2, 3));
-	this->instList->push_back(instObj("ADD", 8, 9, 4));
-	this->instList->push_back(instObj("ADD", 4, 5, 6));
-	this->instList->push_back(instObj("SUB", 3, 2, 3));
+	//this->instList->push_back(instObj("ADD", 1, 2, 3));
+	//this->instList->push_back(instObj("SUB", 4, 5, 6));
+	//this->instList->push_back(instObj("DIV", 3, 4, 5));
+	//this->instList->push_back(instObj("MUL", 2, 2, 3));
+	//this->instList->push_back(instObj("ADD", 8, 9, 4));
+	//this->instList->push_back(instObj("ADD", 4, 5, 6));
+	//this->instList->push_back(instObj("SUB", 3, 2, 3));
+	//CHANGE FOR LOOP
+	this->instList->push_back(instObj("ADD", 1, 3, 4));
+	this->instList->push_back(instObj("MUL", 7, 1, 5));
+	this->instList->push_back(instObj("DIV", 9, 7, 2));
+	this->instList->push_back(instObj("SUB", 2, 3, 4));
+
 	int end = instList->size();
 
-	for (int i = end - 7; i < end; i++) {
+	for (int i = end - 4; i < end; i++) {
 		this->InstBank->Text += gcnew String(instList->at(i).print().c_str()) + "\n";
 	}
 
 }
 
-
-private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^ e) {
-
+private: System::Void run(){
 
 
 	// Handle Broad Cast Queue
@@ -2152,16 +2053,16 @@ private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^
 
 
 
-	
+
 	// subtract clock cycles from inst and see if they can execute
 	//-------------------------------------------------------------------------------------------------
 	std::vector<instObj>::iterator curMul;
 	for (curMul = this->mulUnit->begin(); curMul != this->mulUnit->end(); ++curMul) {
 		curMul->CCToFinish -= 1;
 		//std::cout << "Inst is at " << curMul->CCToFinish;
-		if (curMul->CCToFinish <= 0 && this->broadCastQ->size() == 0) {
+		if (curMul->CCToFinish <= 0 && this->broadCastQ->size() == 0 && curMul->isPlaceHolder == false) {
 			this->broadCastQ->push_back(*curMul);
-			
+
 		}
 	}
 
@@ -2169,11 +2070,11 @@ private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^
 	for (curAdd = this->addUnit->begin(); curAdd != this->addUnit->end(); ++curAdd) {
 		curAdd->CCToFinish -= 1;
 		//std::cout << "Inst is at " << curAdd->CCToFinish;
-		if (curAdd->CCToFinish <= 0 && this->broadCastQ->size() == 0) {
+		if (curAdd->CCToFinish <= 0 && this->broadCastQ->size() == 0 && curAdd->isPlaceHolder == false) {
 			this->broadCastQ->push_back(*curAdd);
 		}
 	}
-	
+
 
 
 	// Load a new Inst
@@ -2183,36 +2084,62 @@ private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^
 		instObj curObj = this->instList->at(0);
 		this->instList->erase(instList->begin());
 		this->updateInstBank();
-		
-		
+
+
 		if (curObj.inst.compare("ADD") == 0 || curObj.inst.compare("SUB") == 0) {
-			if ( this->addUnit->size() < this->MAX_ADD_UNIT ) {
-				this->addUnit->push_back(curObj);
-				this->updateAddUnit();
+			if (this->addUnit->size() >= this->MAX_ADD_UNIT) {
+				bool flipped = false;
+				for (int i = 0; i < this->MAX_ADD_UNIT; i++) {
+					if (this->addUnit->at(i).isPlaceHolder == true) {
+						curObj.index = i;
+						this->addUnit->at(i) = curObj;
+						flipped = true;
+						break;
+					}
+				}
+				if (!flipped) {
+					this->instList->insert(instList->begin(), curObj);
+				}
 			}
 			else {
-				this->instList->insert(instList->begin(), curObj);
-				this->updateInstBank();
+				curObj.index = this->addUnit->size();
+				this->addUnit->push_back(curObj);
 			}
+			this->updateInstBank();
+			this->updateAddUnit();
 
 		}
 		else {
-			if (this->mulUnit->size() < this->MAX_MUL_UNIT) {
-				this->mulUnit->push_back(curObj);
-				this->updateMulUnit();
+			if (this->mulUnit->size() >= this->MAX_MUL_UNIT) {
+				bool flipped = false;
+				for (int i = 0; i < this->MAX_MUL_UNIT; i++) {
+					if (this->mulUnit->at(i).isPlaceHolder == true) {
+						curObj.index = i;
+						this->mulUnit->at(i) = curObj;
+						flipped = true;
+						break;
+					}
+				}
+				if (!flipped) {
+					this->instList->insert(instList->begin(), curObj);
+
+				}
 			}
 			else {
-				this->instList->insert(instList->begin(), curObj);
-				this->updateInstBank();
+				curObj.index = this->mulUnit->size();
+				this->mulUnit->push_back(curObj);
 			}
 
+			this->updateInstBank();
+			this->updateMulUnit();
 		}
 
 	}
 
+}
 
-
-
+private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^ e) {
+	run();
 }
 
 private: System::Void updateMulUnit() {
@@ -2312,24 +2239,27 @@ private: System::Void updateInstBank() {
 	}
 }
 
+
 private: System::Void updateRAT(instObj cur) {
 
 
 	int val = 0;
+	int r2 = this->regFilesA->at(cur.reg2);
+	int r3 = this->regFilesA->at(cur.reg3);
 	if (cur.inst.compare("ADD") == 0) {
-		val = cur.reg2 + cur.reg3; 
+		val = r2 + r3; 
 
 	}
 	else if (cur.inst.compare("SUB") == 0) {
-		val = cur.reg2 - cur.reg3;
+		val = r2 - r3;
 		
 	}
 	else if (cur.inst.compare("MUL") == 0) {
-		val = cur.reg2 * cur.reg3;
+		val = r2 * r3;
 		
 	}
 	else if (cur.inst.compare("DIV") == 0) {
-		val = cur.reg2 / cur.reg3;
+		val = r2 / r3;
 		
 	}
 	else {
@@ -2340,33 +2270,53 @@ private: System::Void updateRAT(instObj cur) {
 	{
 	case 0:
 		this->Val0->Text = gcnew String(val.ToString());
+		this->Done0->Text = gcnew String((this->curClockCycle + 1).ToString());
+		this->Dest0->Text = gcnew String(cur.reg1.ToString());
 		break;
 	case 1:
 		this->Val1->Text = gcnew String(val.ToString());
+		this->Done1->Text = gcnew String((this->curClockCycle + 1).ToString());
+		this->Dest1->Text = gcnew String(cur.reg1.ToString());
 		break;
 	case 2:
 		this->Val2->Text = gcnew String(val.ToString());
+		this->Done2->Text = gcnew String((this->curClockCycle + 1).ToString());
+		this->Dest2->Text = gcnew String(cur.reg1.ToString());
 		break;
 	case 3:
 		this->Val3->Text = gcnew String(val.ToString());
+		this->Done3->Text = gcnew String((this->curClockCycle + 1).ToString());
+		this->Dest3->Text = gcnew String(cur.reg1.ToString());
 		break;
 	case 4:
 		this->Val4->Text = gcnew String(val.ToString());
+		this->Done4->Text = gcnew String((this->curClockCycle + 1).ToString());
+		this->Dest4->Text = gcnew String(cur.reg1.ToString());
 		break;
 	case 5:
 		this->Val5->Text = gcnew String(val.ToString());
+		this->Done5->Text = gcnew String((this->curClockCycle + 1).ToString());
+		this->Dest5->Text = gcnew String(cur.reg1.ToString());
 		break;
 	case 6:
 		this->Val6->Text = gcnew String(val.ToString());
+		this->Done6->Text = gcnew String((this->curClockCycle + 1).ToString());
+		this->Dest6->Text = gcnew String(cur.reg1.ToString());
 		break;
 	case 7:
 		this->Val7->Text = gcnew String(val.ToString());
+		this->Done7->Text = gcnew String((this->curClockCycle + 1).ToString());
+		this->Dest7->Text = gcnew String(cur.reg1.ToString());
 		break;
 	case 8:
 		this->Val8->Text = gcnew String(val.ToString());
+		this->Done8->Text = gcnew String((this->curClockCycle + 1).ToString());
+		this->Dest8->Text = gcnew String(cur.reg1.ToString());
 		break;
 	case 9:
 		this->Val9->Text = gcnew String(val.ToString());
+		this->Done9->Text = gcnew String((this->curClockCycle+1).ToString());
+		this->Dest9->Text = gcnew String(cur.reg1.ToString());
 		break;
 
 	default:
@@ -2374,26 +2324,101 @@ private: System::Void updateRAT(instObj cur) {
 		break;
 	}
 
+
+	// updating Memory ----------------------------------------------------------------------
+	this->regFilesA->at(cur.reg1) = val;
+	this->updateMemeory();
+
 	this->curROB += 1;
 	if (curROB >= 10) {
 		this->curROB = 0;
 	}
 
-	for (int i = 0; i < this->addUnit->size(); i++) {
-		if (this->addUnit->at(i).index == cur.index) {
-			//this->addUnit->erase(this->addUnit->begin()+i);
-			this->addUnit->at(i).isPlaceHolder = true;
-			std::cout << cur.index;
+	if (cur.inst.compare("ADD") == 0 || cur.inst.compare("SUB") == 0) {
+		//std::cout << cur.index ;
+		for (int i = 0; i < this->addUnit->size(); i++) {
+			if (this->addUnit->at(i).index == cur.index) {
+				//this->addUnit->erase(this->addUnit->begin()+i);
+				this->addUnit->at(i).isPlaceHolder = true;
+				//std::cout << cur.index << "\n";
+			}
 		}
 	}
-	for (int i = 0; i < this->mulUnit->size(); i++) {
-		if (this->mulUnit->at(i).index == cur.index) {
-			//this->mulUnit->erase(this->mulUnit->begin() + i);
-			this->addUnit->at(i).isPlaceHolder = true;
+	else {
+		for (int i = 0; i < this->mulUnit->size(); i++) {
+			if (this->mulUnit->at(i).index == cur.index) {
+				//this->mulUnit->erase(this->mulUnit->begin() + i);
+				this->mulUnit->at(i).isPlaceHolder = true;
+			}
 		}
 	}
 	this->updateAddUnit();
 	this->updateMulUnit();
+}
+
+private: System::Void updateMemeory() {
+	for (int i = 0; i < this->regFilesA->size(); i++) {
+		switch (i) 
+		{
+		case 0:
+			this->RegF0->Text = gcnew String(this->regFilesA->at(i).ToString());
+			break;
+		case 1:
+			this->RegF1->Text = gcnew String(this->regFilesA->at(i).ToString());
+			break;
+		case 2:
+			this->RegF2->Text = gcnew String(this->regFilesA->at(i).ToString());
+			break;
+		case 3:
+			this->RegF3->Text = gcnew String(this->regFilesA->at(i).ToString());
+			break;
+		case 4:
+			this->RegF4->Text = gcnew String(this->regFilesA->at(i).ToString());
+			break;
+		case 5:
+			this->RegF5->Text = gcnew String(this->regFilesA->at(i).ToString());
+			break;
+		case 6:
+			this->RegF6->Text = gcnew String(this->regFilesA->at(i).ToString());
+			break;
+		case 7:
+			this->RegF7->Text = gcnew String(this->regFilesA->at(i).ToString());
+			break;
+		case 8:
+			this->RegF8->Text = gcnew String(this->regFilesA->at(i).ToString());
+			break;
+		case 9:
+			this->RegF9->Text = gcnew String(this->regFilesA->at(i).ToString());
+			break;
+		default:
+			std::cout << "Invalid Mem counter\n";
+			break;
+		}
+
+	}
+}
+
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	std::cout << "Run Btn Pressed/n";
+	if (isRunning) {
+		this->isRunning = false;
+		this->button2->Text = "Run";
+	}
+	else {
+		this->isRunning = true;
+		this->button2->Text = "STOP";
+	}
+	this->runningLoop();
+
+}
+
+private: System::Void runningLoop() {
+	while (this->isRunning) {
+		this->run();
+		this->Update();
+		Sleep(1000);
+
+	}
 }
 
 };

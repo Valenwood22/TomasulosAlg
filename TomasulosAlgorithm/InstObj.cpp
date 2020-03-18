@@ -22,7 +22,7 @@ public:
         this->reg2 = reg2;
         this->reg3 = reg3;
         this->index = -1;
-        bool isPlaceHolder = false;
+        this->isPlaceHolder = false;
         this->CCToFinish = this->getCCToFinish(inst);
     }
     
