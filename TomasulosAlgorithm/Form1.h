@@ -40,9 +40,12 @@ namespace TomasulosAlgorithm {
 		std::vector<instObj>* mulUnit = new std::vector<instObj>;
 
 		int curClockCycle = 0;
-
-
 		std::vector<int>* regFilesA = new std::vector<int>;
+		std::vector<int>* robsInUse = new std::vector<int>;
+		int curRob = -1;
+		int curEatAdd = 0;
+		int curEatMul = 0;
+
 	private: System::Windows::Forms::Label^ label18;
 	public:
 
@@ -69,8 +72,21 @@ namespace TomasulosAlgorithm {
 			RegF7->Text = "7";
 			RegF8->Text = "8";
 			RegF9->Text = "9";
+			Rat_r0->Text = "R0";
+			Rat_r1->Text = "R1";
+			Rat_r2->Text = "R2";
+			Rat_r3->Text = "R3";
+			Rat_r4->Text = "R4";
+			Rat_r5->Text = "R5";
+			Rat_r6->Text = "R6";
+			Rat_r7->Text = "R7";
+			Rat_r8->Text = "R8";
+			Rat_r9->Text = "R9";
 			for (int i = 0; i < 10; i++) {
 				this->regFilesA->push_back(i);
+			}
+			for (int i = 0; i < 10; i++) {
+				this->robsInUse->push_back(-1);
 			}
 			current_clock->Text = "0";
 
@@ -850,7 +866,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->Rat_r9->Location = System::Drawing::Point(87, 531);
 			this->Rat_r9->Name = L"Rat_r9";
 			this->Rat_r9->ReadOnly = true;
-			this->Rat_r9->Size = System::Drawing::Size(33, 20);
+			this->Rat_r9->Size = System::Drawing::Size(44, 20);
 			this->Rat_r9->TabIndex = 67;
 			this->Rat_r9->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
@@ -859,7 +875,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->Rat_r7->Location = System::Drawing::Point(87, 478);
 			this->Rat_r7->Name = L"Rat_r7";
 			this->Rat_r7->ReadOnly = true;
-			this->Rat_r7->Size = System::Drawing::Size(33, 20);
+			this->Rat_r7->Size = System::Drawing::Size(44, 20);
 			this->Rat_r7->TabIndex = 66;
 			this->Rat_r7->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
@@ -868,7 +884,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->Rat_r8->Location = System::Drawing::Point(87, 505);
 			this->Rat_r8->Name = L"Rat_r8";
 			this->Rat_r8->ReadOnly = true;
-			this->Rat_r8->Size = System::Drawing::Size(33, 20);
+			this->Rat_r8->Size = System::Drawing::Size(44, 20);
 			this->Rat_r8->TabIndex = 65;
 			this->Rat_r8->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
@@ -877,7 +893,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->Rat_r0->Location = System::Drawing::Point(87, 297);
 			this->Rat_r0->Name = L"Rat_r0";
 			this->Rat_r0->ReadOnly = true;
-			this->Rat_r0->Size = System::Drawing::Size(33, 20);
+			this->Rat_r0->Size = System::Drawing::Size(44, 20);
 			this->Rat_r0->TabIndex = 64;
 			this->Rat_r0->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
@@ -886,7 +902,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->Rat_r1->Location = System::Drawing::Point(87, 323);
 			this->Rat_r1->Name = L"Rat_r1";
 			this->Rat_r1->ReadOnly = true;
-			this->Rat_r1->Size = System::Drawing::Size(33, 20);
+			this->Rat_r1->Size = System::Drawing::Size(44, 20);
 			this->Rat_r1->TabIndex = 63;
 			this->Rat_r1->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
@@ -895,7 +911,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->Rat_r2->Location = System::Drawing::Point(87, 349);
 			this->Rat_r2->Name = L"Rat_r2";
 			this->Rat_r2->ReadOnly = true;
-			this->Rat_r2->Size = System::Drawing::Size(33, 20);
+			this->Rat_r2->Size = System::Drawing::Size(44, 20);
 			this->Rat_r2->TabIndex = 62;
 			this->Rat_r2->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
@@ -904,7 +920,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->Rat_r3->Location = System::Drawing::Point(87, 375);
 			this->Rat_r3->Name = L"Rat_r3";
 			this->Rat_r3->ReadOnly = true;
-			this->Rat_r3->Size = System::Drawing::Size(33, 20);
+			this->Rat_r3->Size = System::Drawing::Size(44, 20);
 			this->Rat_r3->TabIndex = 61;
 			this->Rat_r3->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
@@ -913,7 +929,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->Rat_r4->Location = System::Drawing::Point(87, 401);
 			this->Rat_r4->Name = L"Rat_r4";
 			this->Rat_r4->ReadOnly = true;
-			this->Rat_r4->Size = System::Drawing::Size(33, 20);
+			this->Rat_r4->Size = System::Drawing::Size(44, 20);
 			this->Rat_r4->TabIndex = 60;
 			this->Rat_r4->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
@@ -922,7 +938,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->Rat_r5->Location = System::Drawing::Point(87, 427);
 			this->Rat_r5->Name = L"Rat_r5";
 			this->Rat_r5->ReadOnly = true;
-			this->Rat_r5->Size = System::Drawing::Size(33, 20);
+			this->Rat_r5->Size = System::Drawing::Size(44, 20);
 			this->Rat_r5->TabIndex = 59;
 			this->Rat_r5->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
@@ -931,7 +947,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->Rat_r6->Location = System::Drawing::Point(87, 453);
 			this->Rat_r6->Name = L"Rat_r6";
 			this->Rat_r6->ReadOnly = true;
-			this->Rat_r6->Size = System::Drawing::Size(33, 20);
+			this->Rat_r6->Size = System::Drawing::Size(44, 20);
 			this->Rat_r6->TabIndex = 58;
 			this->Rat_r6->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
@@ -2002,10 +2018,8 @@ private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^
 		int end = instList->size() - 1;
 		this->InstBank->Text += gcnew String(instList->at(end).print().c_str()) + "\n";
 	}
-
-
-
 }
+
 
 private: System::Void QuickAddBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 
@@ -2038,8 +2052,9 @@ private: System::Void run(){
 	if (this->broadCastQ->size() >= 1) {
 		instObj cur = this->broadCastQ->back();
 		this->broadCastQ->pop_back();
-		std::cout << "size of broadcast Q " << this->broadCastQ->size();
+		//std::cout << "size of broadcast Q " << this->broadCastQ->size();
 		this->updateRAT(cur);
+		this->removeRat(cur.reg1);
 		this->updateAddUnit();
 		this->updateMulUnit();
 	}
@@ -2050,32 +2065,6 @@ private: System::Void run(){
 
 	// Check if instr can be loaded
 	this->updateClockCycle();
-
-
-
-
-	// subtract clock cycles from inst and see if they can execute
-	//-------------------------------------------------------------------------------------------------
-	std::vector<instObj>::iterator curMul;
-	for (curMul = this->mulUnit->begin(); curMul != this->mulUnit->end(); ++curMul) {
-		curMul->CCToFinish -= 1;
-		//std::cout << "Inst is at " << curMul->CCToFinish;
-		if (curMul->CCToFinish <= 0 && this->broadCastQ->size() == 0 && curMul->isPlaceHolder == false) {
-			this->broadCastQ->push_back(*curMul);
-
-		}
-	}
-
-	std::vector<instObj>::iterator curAdd;
-	for (curAdd = this->addUnit->begin(); curAdd != this->addUnit->end(); ++curAdd) {
-		curAdd->CCToFinish -= 1;
-		//std::cout << "Inst is at " << curAdd->CCToFinish;
-		if (curAdd->CCToFinish <= 0 && this->broadCastQ->size() == 0 && curAdd->isPlaceHolder == false) {
-			this->broadCastQ->push_back(*curAdd);
-		}
-	}
-
-
 
 	// Load a new Inst
 	//-------------------------------------------------------------------------------------------------
@@ -2092,7 +2081,10 @@ private: System::Void run(){
 				for (int i = 0; i < this->MAX_ADD_UNIT; i++) {
 					if (this->addUnit->at(i).isPlaceHolder == true) {
 						curObj.index = i;
+						curObj.rob = this->getRob(curObj.reg1);
+						this->insertIntoRat(curObj.reg1, curObj.rob);
 						this->addUnit->at(i) = curObj;
+						this->insertROB(curObj);
 						flipped = true;
 						break;
 					}
@@ -2103,7 +2095,10 @@ private: System::Void run(){
 			}
 			else {
 				curObj.index = this->addUnit->size();
+				curObj.rob = this->getRob(curObj.reg1);
+				this->insertIntoRat(curObj.reg1, curObj.rob);
 				this->addUnit->push_back(curObj);
+				this->insertROB(curObj);
 			}
 			this->updateInstBank();
 			this->updateAddUnit();
@@ -2115,7 +2110,10 @@ private: System::Void run(){
 				for (int i = 0; i < this->MAX_MUL_UNIT; i++) {
 					if (this->mulUnit->at(i).isPlaceHolder == true) {
 						curObj.index = i;
+						curObj.rob = this->getRob(curObj.reg1);
+						this->insertIntoRat(curObj.reg1, curObj.rob);
 						this->mulUnit->at(i) = curObj;
+						this->insertROB(curObj);
 						flipped = true;
 						break;
 					}
@@ -2127,7 +2125,10 @@ private: System::Void run(){
 			}
 			else {
 				curObj.index = this->mulUnit->size();
+				curObj.rob = this->getRob(curObj.reg1);
+				this->insertIntoRat(curObj.reg1, curObj.rob);
 				this->mulUnit->push_back(curObj);
+				this->insertROB(curObj);
 			}
 
 			this->updateInstBank();
@@ -2136,26 +2137,94 @@ private: System::Void run(){
 
 	}
 
+
+	// subtract clock cycles from inst and see if they can execute
+	//-------------------------------------------------------------------------------------------------
+	std::vector<instObj>::iterator curMul;
+
+	for (curMul = this->mulUnit->begin(); curMul != this->mulUnit->end(); ++curMul) {
+		bool brk = false;
+		if (this->robsInUse->at(curMul->rob) == -1) {
+			std::cout << curMul->rob;
+			curMul->CCToFinish -= 1;
+			brk = true;
+		}
+		std::cout << "Inst is at " << curMul->CCToFinish << "\n";
+		if (curMul->CCToFinish <= 0 && this->broadCastQ->size() == 0 && curMul->isPlaceHolder == false) {
+			this->broadCastQ->push_back(*curMul);
+
+		}
+		if (brk) {
+			break;
+		}
+	}
+
+	std::vector<instObj>::iterator curAdd;
+	for (curAdd = this->addUnit->begin(); curAdd != this->addUnit->end(); ++curAdd) {
+		bool brk = false;
+		if (this->robsInUse->at(curAdd->rob) == -1) {
+			curAdd->CCToFinish -= 1;
+			brk = true;
+		}
+		//std::cout << "Inst is at " << curAdd->CCToFinish;
+		if (curAdd->CCToFinish <= 0 && this->broadCastQ->size() == 0 && curAdd->isPlaceHolder == false) {
+			this->broadCastQ->push_back(*curAdd);
+		}
+		if (curAdd->isPlaceHolder == false) {
+			break;
+		}
+	}
+
+
+
+
+
 }
 
 private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^ e) {
+	for (int i = 0; i < this->robsInUse->size(); i++) {
+		std::cout << this->robsInUse->at(i) << " ";
+	}
+	std::cout << "\n";
 	run();
 }
 
 private: System::Void updateMulUnit() {
 	for (int i = 0; i < mulUnit->size(); i++) {
 		instObj cur = mulUnit->at(i);
+		bool reg1dep = false;
+		bool reg2dep = false;
+		if (this->robsInUse->at(cur.reg2) != -1) {
+			reg1dep = true;
+		}
+		if (this->robsInUse->at(cur.reg3) != -1) {
+			reg2dep = true;
+		}
 		if (i == 0) {
 			if (cur.isPlaceHolder == true) {
 				this->RS3_op->Text = "";
 				this->RS3_v1->Text = "";
 				this->RS3_v2->Text = "";
+				this->RS3_tag->Text = "";
+				this->RS3_t1->Text = "";
+				this->RS3_t2->Text = "";
 				cur.index = -1;
 			}
 			else {
 				this->RS3_op->Text = gcnew String(cur.inst.c_str());
-				this->RS3_v1->Text = cur.reg2.ToString();
-				this->RS3_v2->Text = cur.reg3.ToString();
+				if (reg1dep) {
+					this->RS3_t1->Text = gcnew String("ROB " + this->robsInUse->at(cur.reg2).ToString());
+				}
+				else {
+					this->RS3_v1->Text = this->regFilesA->at(cur.reg2).ToString();
+				}
+				if (reg2dep) {
+					this->RS3_t2->Text = gcnew String("ROB " + this->robsInUse->at(cur.reg3).ToString());
+				}
+				else {
+					this->RS3_v2->Text = this->regFilesA->at(cur.reg3).ToString();
+				}
+				this->RS3_tag->Text = gcnew String("ROB " + cur.rob.ToString());
 				cur.index = 3;
 			}
 		}
@@ -2164,12 +2233,26 @@ private: System::Void updateMulUnit() {
 				this->RS4_op->Text = "";
 				this->RS4_v1->Text = "";
 				this->RS4_v2->Text = "";
+				this->RS4_tag->Text = "";
+				this->RS4_t1->Text = "";
+				this->RS4_t2->Text = "";
 				cur.index = -1;
 			}
 			else {
 				this->RS4_op->Text = gcnew String(cur.inst.c_str());
-				this->RS4_v1->Text = cur.reg2.ToString();
-				this->RS4_v2->Text = cur.reg3.ToString();
+				if (reg1dep) {
+					this->RS4_t1->Text = gcnew String("ROB " + this->robsInUse->at(cur.reg2).ToString());
+				}
+				else {
+					this->RS4_v1->Text = this->regFilesA->at(cur.reg2).ToString();
+				}
+				if (reg2dep) {
+					this->RS4_t2->Text = gcnew String("ROB " + this->robsInUse->at(cur.reg3).ToString());
+				}
+				else {
+					this->RS4_v2->Text = this->regFilesA->at(cur.reg3).ToString();
+				}
+				this->RS4_tag->Text = gcnew String("ROB " + cur.rob.ToString());
 				cur.index = 4;
 			}
 		}
@@ -2179,17 +2262,39 @@ private: System::Void updateMulUnit() {
 private: System::Void updateAddUnit() {
 	for (int i = 0; i < this->addUnit->size(); i++) {
 		instObj cur = this->addUnit->at(i);
+		bool reg1dep = false;
+		bool reg2dep = false;
+		if (this->robsInUse->at(cur.reg2) != -1) {
+			reg1dep = true;
+		}
+		if (this->robsInUse->at(cur.reg3) != -1) {
+			reg2dep = true;
+		}
 		if (i == 0) {
 			if (cur.isPlaceHolder == true) {
 				this->RS0_op->Text = "";
 				this->RS0_v1->Text = "";
 				this->RS0_v2->Text = "";
+				this->RS0_tag->Text = "";
+				this->RS0_t1->Text = "";
+				this->RS0_t2->Text = "";
 				cur.index = -1;
 			}
 			else {
 				this->RS0_op->Text = gcnew String(cur.inst.c_str());
-				this->RS0_v1->Text = cur.reg2.ToString();
-				this->RS0_v2->Text = cur.reg3.ToString();
+				if (reg1dep) {
+					this->RS0_t1->Text = gcnew String("ROB " + this->robsInUse->at(cur.reg2).ToString());
+				}
+				else {
+					this->RS0_v1->Text = this->regFilesA->at(cur.reg2).ToString();
+				}
+				if (reg2dep) {
+					this->RS0_t2->Text = gcnew String("ROB " + this->robsInUse->at(cur.reg3).ToString());
+				}
+				else {
+					this->RS0_v2->Text = this->regFilesA->at(cur.reg3).ToString();
+				}
+				this->RS0_tag->Text = gcnew String("ROB " + cur.rob.ToString());
 				cur.index = 0;
 			}
 		}
@@ -2198,12 +2303,26 @@ private: System::Void updateAddUnit() {
 				this->RS1_op->Text = "";
 				this->RS1_v1->Text = "";
 				this->RS1_v2->Text = "";
+				this->RS1_tag->Text = "";
+				this->RS1_t1->Text = "";
+				this->RS1_t2->Text = "";
 				cur.index = -1;
 			}
 			else {
 				this->RS1_op->Text = gcnew String(cur.inst.c_str());
-				this->RS1_v1->Text = cur.reg2.ToString();
-				this->RS1_v2->Text = cur.reg3.ToString();
+				if (reg1dep) {
+					this->RS1_t1->Text = gcnew String("ROB " + this->robsInUse->at(cur.reg2).ToString());
+				}
+				else {
+					this->RS1_v1->Text = this->regFilesA->at(cur.reg2).ToString();
+				}
+				if (reg2dep) {
+					this->RS1_t2->Text = gcnew String("ROB " + this->robsInUse->at(cur.reg3).ToString());
+				}
+				else {
+					this->RS1_v2->Text = this->regFilesA->at(cur.reg3).ToString();
+				}
+				this->RS1_tag->Text = gcnew String("ROB " + cur.rob.ToString());
 				cur.index = 1;
 			}
 		}
@@ -2212,12 +2331,26 @@ private: System::Void updateAddUnit() {
 				this->RS2_op->Text = "";
 				this->RS2_v1->Text = "";
 				this->RS2_v2->Text = "";
+				this->RS2_tag->Text = "";
+				this->RS2_t1->Text = "";
+				this->RS2_t2->Text = "";
 				cur.index = -1;
 			}
 			else {
 				this->RS2_op->Text = gcnew String(cur.inst.c_str());
-				this->RS2_v1->Text = cur.reg2.ToString();
-				this->RS2_v2->Text = cur.reg3.ToString();
+				if (reg1dep) {
+					this->RS2_t1->Text = gcnew String("ROB " + this->robsInUse->at(cur.reg2).ToString());
+				}
+				else {
+					this->RS2_v1->Text = this->regFilesA->at(cur.reg2).ToString();
+				}
+				if (reg2dep) {
+					this->RS2_t2->Text = gcnew String("ROB " + this->robsInUse->at(cur.reg3).ToString());
+				}
+				else {
+					this->RS2_v2->Text = this->regFilesA->at(cur.reg3).ToString();
+				}
+				this->RS1_tag->Text = gcnew String("ROB " + cur.rob.ToString());
 				cur.index = 2;
 			}
 		}
@@ -2239,9 +2372,48 @@ private: System::Void updateInstBank() {
 	}
 }
 
+private: System::Void insertROB(instObj cur) {
+	switch (cur.rob)
+	{
+	case 0:
+		this->Dest0->Text = gcnew String("R" + cur.reg1.ToString());
+		break;
+	case 1:
+		this->Dest1->Text = gcnew String("R" + cur.reg1.ToString());
+		break;
+	case 2:
+		this->Dest2->Text = gcnew String("R" + cur.reg1.ToString());
+		break;
+	case 3:
+		this->Dest3->Text = gcnew String("R" + cur.reg1.ToString());
+		break;
+	case 4:
+		this->Dest4->Text = gcnew String("R" + cur.reg1.ToString());
+		break;
+	case 5:
+		this->Dest5->Text = gcnew String("R" + cur.reg1.ToString());
+		break;
+	case 6:
+		this->Dest6->Text = gcnew String("R" + cur.reg1.ToString());
+		break;
+	case 7:
+		this->Dest7->Text = gcnew String("R" + cur.reg1.ToString());
+		break;
+	case 8:
+		this->Dest8->Text = gcnew String("R" + cur.reg1.ToString());
+		break;
+	case 9:
+		this->Dest9->Text = gcnew String("R" + cur.reg1.ToString());
+		break;
+	default:
+		std::cout << "Invalid Insert RAT";
+		break;
+	}
+
+
+}
 
 private: System::Void updateRAT(instObj cur) {
-
 
 	int val = 0;
 	int r2 = this->regFilesA->at(cur.reg2);
@@ -2266,57 +2438,57 @@ private: System::Void updateRAT(instObj cur) {
 		std::cout << "Invalid operation";
 	}
 
-	switch (this->curROB)
+	switch (cur.rob)
 	{
 	case 0:
 		this->Val0->Text = gcnew String(val.ToString());
 		this->Done0->Text = gcnew String((this->curClockCycle + 1).ToString());
-		this->Dest0->Text = gcnew String(cur.reg1.ToString());
+		//this->Dest0->Text = gcnew String("R" + cur.reg1.ToString());
 		break;
 	case 1:
 		this->Val1->Text = gcnew String(val.ToString());
 		this->Done1->Text = gcnew String((this->curClockCycle + 1).ToString());
-		this->Dest1->Text = gcnew String(cur.reg1.ToString());
+		//this->Dest1->Text = gcnew String("R" + cur.reg1.ToString());
 		break;
 	case 2:
 		this->Val2->Text = gcnew String(val.ToString());
 		this->Done2->Text = gcnew String((this->curClockCycle + 1).ToString());
-		this->Dest2->Text = gcnew String(cur.reg1.ToString());
+		//this->Dest2->Text = gcnew String("R" + cur.reg1.ToString());
 		break;
 	case 3:
 		this->Val3->Text = gcnew String(val.ToString());
 		this->Done3->Text = gcnew String((this->curClockCycle + 1).ToString());
-		this->Dest3->Text = gcnew String(cur.reg1.ToString());
+		//this->Dest3->Text = gcnew String("R" + cur.reg1.ToString());
 		break;
 	case 4:
 		this->Val4->Text = gcnew String(val.ToString());
 		this->Done4->Text = gcnew String((this->curClockCycle + 1).ToString());
-		this->Dest4->Text = gcnew String(cur.reg1.ToString());
+		//this->Dest4->Text = gcnew String("R" + cur.reg1.ToString());
 		break;
 	case 5:
 		this->Val5->Text = gcnew String(val.ToString());
 		this->Done5->Text = gcnew String((this->curClockCycle + 1).ToString());
-		this->Dest5->Text = gcnew String(cur.reg1.ToString());
+		//this->Dest5->Text = gcnew String("R" + cur.reg1.ToString());
 		break;
 	case 6:
 		this->Val6->Text = gcnew String(val.ToString());
 		this->Done6->Text = gcnew String((this->curClockCycle + 1).ToString());
-		this->Dest6->Text = gcnew String(cur.reg1.ToString());
+		//this->Dest6->Text = gcnew String("R" + cur.reg1.ToString());
 		break;
 	case 7:
 		this->Val7->Text = gcnew String(val.ToString());
 		this->Done7->Text = gcnew String((this->curClockCycle + 1).ToString());
-		this->Dest7->Text = gcnew String(cur.reg1.ToString());
+		//this->Dest7->Text = gcnew String("R" + cur.reg1.ToString());
 		break;
 	case 8:
 		this->Val8->Text = gcnew String(val.ToString());
 		this->Done8->Text = gcnew String((this->curClockCycle + 1).ToString());
-		this->Dest8->Text = gcnew String(cur.reg1.ToString());
+		//this->Dest8->Text = gcnew String("R" + cur.reg1.ToString());
 		break;
 	case 9:
 		this->Val9->Text = gcnew String(val.ToString());
 		this->Done9->Text = gcnew String((this->curClockCycle+1).ToString());
-		this->Dest9->Text = gcnew String(cur.reg1.ToString());
+		//this->Dest9->Text = gcnew String("R" + cur.reg1.ToString());
 		break;
 
 	default:
@@ -2418,6 +2590,101 @@ private: System::Void runningLoop() {
 		this->Update();
 		Sleep(1000);
 
+	}
+}
+
+private: int getRob(int dest) {
+	
+	this->curRob = this->curRob + 1;
+	if (this->curRob >= 10) {
+		this->curRob = 0;
+	}
+	
+	int x = this->curRob;
+	//index = RF line
+	//val = robVal
+	this->robsInUse->at(dest) = x;
+
+	return this->curRob;
+}
+
+private: System::Void insertIntoRat(int ratNumber, int robNumber) {
+
+	switch (ratNumber)
+	{
+	case 0:
+		this->Rat_r0->Text = gcnew String("ROB " + robNumber.ToString());
+		break;
+	case 1:
+		this->Rat_r1->Text = gcnew String("ROB " + robNumber.ToString());
+		break;
+	case 2:
+		this->Rat_r2->Text = gcnew String("ROB " + robNumber.ToString());
+		break;
+	case 3:
+		this->Rat_r3->Text = gcnew String("ROB " + robNumber.ToString());
+		break;
+	case 4:
+		this->Rat_r4->Text = gcnew String("ROB " + robNumber.ToString());
+		break;
+	case 5:
+		this->Rat_r5->Text = gcnew String("ROB " + robNumber.ToString());
+		break;
+	case 6:
+		this->Rat_r6->Text = gcnew String("ROB " + robNumber.ToString());
+		break;
+	case 7:
+		this->Rat_r7->Text = gcnew String("ROB " + robNumber.ToString());
+		break;
+	case 8:
+		this->Rat_r8->Text = gcnew String("ROB " + robNumber.ToString());
+		break;
+	case 9:
+		this->Rat_r9->Text = gcnew String("ROB " + robNumber.ToString());
+		break;
+	default:
+		std::cout << "Invalid Rat Number On Insert\n";
+		break;
+	}
+}
+
+private: System::Void removeRat(int ratNumber) {
+	this->robsInUse->at(ratNumber) = -1;
+	switch (ratNumber)
+	{
+	case 0:
+		this->Rat_r0->Text = gcnew String("R0");
+		break;
+	case 1:
+		this->Rat_r1->Text = gcnew String("R1");
+		break;
+	case 2:
+		this->Rat_r2->Text = gcnew String("R2");
+		break;
+	case 3:
+		this->Rat_r3->Text = gcnew String("R3");
+		break;
+	case 4:
+		this->Rat_r4->Text = gcnew String("R4");
+		break;
+	case 5:
+		this->Rat_r5->Text = gcnew String("R5");
+		break;
+	case 6:
+		this->Rat_r6->Text = gcnew String("R6");
+		break;
+	case 7:
+		this->Rat_r7->Text = gcnew String("R7");
+		break;
+	case 8:
+		this->Rat_r8->Text = gcnew String("R8");
+		break;
+	case 9:
+		this->Rat_r9->Text = gcnew String("R9");
+		break;
+	default:
+		std::cout << "Invalid Rat Number On Remove\n";
+		break;
 	}
 }
 

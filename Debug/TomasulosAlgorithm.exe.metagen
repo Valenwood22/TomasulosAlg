@@ -28,4 +28,8 @@ Class TomasulosAlgorithm.Form1: AutoLayout, AnsiClass, Class, Public, BeforeFiel
     std.vector<instObj\,std::allocator<instObj> >* mulUnit : Public
     Int32 curClockCycle : Public
     std.vector<int\,std::allocator<int> >* regFilesA : Public
+    std.vector<int\,std::allocator<int> >* robsInUse : Public
+    Int32 curRob : Public
+    Int32 curEatAdd : Public
+    Int32 curEatMul : Public
     Boolean isRunning : Public
