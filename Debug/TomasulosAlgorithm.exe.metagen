@@ -1,3 +1,4 @@
+  TomasulosAlgorithm.AboutPopUp1.resources - Embedded, ContainedInManifestFile, 
   TomasulosAlgorithm.Form1.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
 Assembly TomasulosAlgorithm, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
@@ -14,6 +15,9 @@ Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=
 	hash=None, flags=None
 Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
+Class TomasulosAlgorithm.AboutPopUp: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class TomasulosAlgorithm.Form1: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -28,8 +32,13 @@ Class TomasulosAlgorithm.Form1: AutoLayout, AnsiClass, Class, Public, BeforeFiel
     std.vector<instObj\,std::allocator<instObj> >* mulUnit : Public
     Int32 curClockCycle : Public
     std.vector<int\,std::allocator<int> >* regFilesA : Public
+    std.vector<int\,std::allocator<int> >* writeBackLines : Public
     std.vector<int\,std::allocator<int> >* robsInUse : Public
+    std.vector<instObj\,std::allocator<instObj> >* writeQueue : Public
     Int32 curRob : Public
     Int32 curEatAdd : Public
     Int32 curEatMul : Public
+    Int32 curID : Public
+    Int32 lastID : Public
+    Int32 cyclesOfSimulation : Public
     Boolean isRunning : Public

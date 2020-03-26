@@ -15,8 +15,10 @@ public:
     int index;
     bool isPlaceHolder;
     int rob;
+    int instId;
+    bool canWrite = false;
 
-    instObj(std::string inst, int reg1, int reg2, int reg3)
+    instObj(std::string inst, int reg1, int reg2, int reg3, int instId)
     {
         this->inst = inst;
         this->reg1 = reg1;
@@ -26,6 +28,7 @@ public:
         this->rob = -1;
         this->isPlaceHolder = false;
         this->CCToFinish = this->getCCToFinish(inst);
+        this->instId = instId;
     }
     
     int getCCToFinish(std::string inst) {

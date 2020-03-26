@@ -121,15 +121,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AboutPopUp1.cpp" />
     <ClCompile Include="Form1.cpp" />
     <ClCompile Include="InstObj.cpp" />
+    <ClCompile Include="aboutPopUp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AboutPopUp1.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Form1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AboutPopUp1.resx">
+      <DependentUpon>AboutPopUp1.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.h</DependentUpon>
     </EmbeddedResource>

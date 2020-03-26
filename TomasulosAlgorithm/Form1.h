@@ -7,11 +7,18 @@
 #include <array>
 #include <algorithm>
 #include <windows.h>
+#include <fstream>
+#include <windows.h>
+#include "AboutPopUp1.h"
+
+
+
 
 
 
 
 namespace TomasulosAlgorithm {
+
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -41,12 +48,20 @@ namespace TomasulosAlgorithm {
 
 		int curClockCycle = 0;
 		std::vector<int>* regFilesA = new std::vector<int>;
+		std::vector<int>* writeBackLines = new std::vector<int>;
 		std::vector<int>* robsInUse = new std::vector<int>;
+		std::vector<instObj>* writeQueue = new std::vector<instObj>;
 		int curRob = -1;
 		int curEatAdd = 0;
 		int curEatMul = 0;
+		int curID = -1;
+		int lastID = 0;
+		int cyclesOfSimulation = -1;
+	
+	public:
 
-	private: System::Windows::Forms::Label^ label18;
+
+
 	public:
 
 		bool isRunning = false;
@@ -84,12 +99,12 @@ namespace TomasulosAlgorithm {
 			Rat_r9->Text = "R9";
 			for (int i = 0; i < 10; i++) {
 				this->regFilesA->push_back(i);
+				this->writeBackLines->push_back(i);
 			}
 			for (int i = 0; i < 10; i++) {
 				this->robsInUse->push_back(-1);
 			}
 			current_clock->Text = "0";
-
 		}
 
 	protected:
@@ -111,10 +126,12 @@ namespace TomasulosAlgorithm {
 
 
 
+	private: System::Windows::Forms::Label^ label18;
+	private: System::Windows::Forms::Button^ FilePickerBtn;
+
+	private: System::Windows::Forms::Button^ aboutBtn;
 
 
-
-	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Label^ label8;
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::Label^ label10;
@@ -157,28 +174,6 @@ namespace TomasulosAlgorithm {
 	private: System::Windows::Forms::TextBox^ RegF7;
 	private: System::Windows::Forms::TextBox^ RegF8;
 private: System::Windows::Forms::TextBox^ RegF9;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -296,9 +291,9 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 	private: System::Windows::Forms::Label^ Rob2;
 	private: System::Windows::Forms::Label^ Rob1;
 	private: System::Windows::Forms::Label^ Rob0;
-	private: System::Windows::Forms::Label^ label20;
-	private: System::Windows::Forms::Label^ label21;
-	private: System::Windows::Forms::Label^ label22;
+
+
+
 
 	private: System::Windows::Forms::TextBox^ Val9;
 
@@ -366,8 +361,6 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Form1::typeid));
-			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->label10 = (gcnew System::Windows::Forms::Label());
@@ -477,9 +470,6 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->Rob2 = (gcnew System::Windows::Forms::Label());
 			this->Rob1 = (gcnew System::Windows::Forms::Label());
 			this->Rob0 = (gcnew System::Windows::Forms::Label());
-			this->label20 = (gcnew System::Windows::Forms::Label());
-			this->label21 = (gcnew System::Windows::Forms::Label());
-			this->label22 = (gcnew System::Windows::Forms::Label());
 			this->Val9 = (gcnew System::Windows::Forms::TextBox());
 			this->Val7 = (gcnew System::Windows::Forms::TextBox());
 			this->Val8 = (gcnew System::Windows::Forms::TextBox());
@@ -513,21 +503,13 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->RS0_t1 = (gcnew System::Windows::Forms::TextBox());
 			this->RS0_op = (gcnew System::Windows::Forms::TextBox());
 			this->label23 = (gcnew System::Windows::Forms::Label());
+			this->FilePickerBtn = (gcnew System::Windows::Forms::Button());
+			this->aboutBtn = (gcnew System::Windows::Forms::Button());
 			this->label18 = (gcnew System::Windows::Forms::Label());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->reg1UD))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->reg2UD))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->reg3UD))->BeginInit();
 			this->SuspendLayout();
-			// 
-			// pictureBox1
-			// 
-			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(769, 12);
-			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(144, 179);
-			this->pictureBox1->TabIndex = 9;
-			this->pictureBox1->TabStop = false;
 			// 
 			// label8
 			// 
@@ -567,7 +549,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// AddInstBtn
 			// 
-			this->AddInstBtn->Location = System::Drawing::Point(45, 227);
+			this->AddInstBtn->Location = System::Drawing::Point(20, 227);
 			this->AddInstBtn->Name = L"AddInstBtn";
 			this->AddInstBtn->Size = System::Drawing::Size(75, 23);
 			this->AddInstBtn->TabIndex = 14;
@@ -577,7 +559,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(14, 629);
+			this->button2->Location = System::Drawing::Point(350, 529);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 15;
@@ -587,7 +569,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(106, 628);
+			this->button3->Location = System::Drawing::Point(442, 528);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(75, 23);
 			this->button3->TabIndex = 16;
@@ -664,7 +646,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			// QuickAddBtn
 			// 
-			this->QuickAddBtn->Location = System::Drawing::Point(129, 227);
+			this->QuickAddBtn->Location = System::Drawing::Point(106, 227);
 			this->QuickAddBtn->Name = L"QuickAddBtn";
 			this->QuickAddBtn->Size = System::Drawing::Size(75, 23);
 			this->QuickAddBtn->TabIndex = 25;
@@ -855,7 +837,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// label19
 			// 
 			this->label19->AutoSize = true;
-			this->label19->Location = System::Drawing::Point(88, 275);
+			this->label19->Location = System::Drawing::Point(84, 275);
 			this->label19->Name = L"label19";
 			this->label19->Size = System::Drawing::Size(32, 13);
 			this->label19->TabIndex = 57;
@@ -990,7 +972,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// Op_code
 			// 
 			this->Op_code->AutoSize = true;
-			this->Op_code->Location = System::Drawing::Point(300, 57);
+			this->Op_code->Location = System::Drawing::Point(305, 57);
 			this->Op_code->Name = L"Op_code";
 			this->Op_code->Size = System::Drawing::Size(22, 13);
 			this->Op_code->TabIndex = 72;
@@ -999,7 +981,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// Temp1
 			// 
 			this->Temp1->AutoSize = true;
-			this->Temp1->Location = System::Drawing::Point(371, 57);
+			this->Temp1->Location = System::Drawing::Point(376, 57);
 			this->Temp1->Name = L"Temp1";
 			this->Temp1->Size = System::Drawing::Size(20, 13);
 			this->Temp1->TabIndex = 73;
@@ -1008,7 +990,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// Temp_2
 			// 
 			this->Temp_2->AutoSize = true;
-			this->Temp_2->Location = System::Drawing::Point(434, 57);
+			this->Temp_2->Location = System::Drawing::Point(439, 57);
 			this->Temp_2->Name = L"Temp_2";
 			this->Temp_2->Size = System::Drawing::Size(20, 13);
 			this->Temp_2->TabIndex = 74;
@@ -1017,7 +999,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// Value_1
 			// 
 			this->Value_1->AutoSize = true;
-			this->Value_1->Location = System::Drawing::Point(496, 57);
+			this->Value_1->Location = System::Drawing::Point(501, 57);
 			this->Value_1->Name = L"Value_1";
 			this->Value_1->Size = System::Drawing::Size(20, 13);
 			this->Value_1->TabIndex = 75;
@@ -1026,7 +1008,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// V2
 			// 
 			this->V2->AutoSize = true;
-			this->V2->Location = System::Drawing::Point(557, 57);
+			this->V2->Location = System::Drawing::Point(562, 57);
 			this->V2->Name = L"V2";
 			this->V2->Size = System::Drawing::Size(20, 13);
 			this->V2->TabIndex = 76;
@@ -1035,7 +1017,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// Busy
 			// 
 			this->Busy->AutoSize = true;
-			this->Busy->Location = System::Drawing::Point(627, 57);
+			this->Busy->Location = System::Drawing::Point(632, 57);
 			this->Busy->Name = L"Busy";
 			this->Busy->Size = System::Drawing::Size(30, 13);
 			this->Busy->TabIndex = 77;
@@ -1044,7 +1026,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// Dest_tag
 			// 
 			this->Dest_tag->AutoSize = true;
-			this->Dest_tag->Location = System::Drawing::Point(699, 57);
+			this->Dest_tag->Location = System::Drawing::Point(704, 57);
 			this->Dest_tag->Name = L"Dest_tag";
 			this->Dest_tag->Size = System::Drawing::Size(26, 13);
 			this->Dest_tag->TabIndex = 78;
@@ -1305,7 +1287,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// Current_clock_cycle
 			// 
 			this->Current_clock_cycle->AutoSize = true;
-			this->Current_clock_cycle->Location = System::Drawing::Point(17, 582);
+			this->Current_clock_cycle->Location = System::Drawing::Point(353, 482);
 			this->Current_clock_cycle->Name = L"Current_clock_cycle";
 			this->Current_clock_cycle->Size = System::Drawing::Size(100, 13);
 			this->Current_clock_cycle->TabIndex = 108;
@@ -1314,7 +1296,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// current_clock
 			// 
 			this->current_clock->AcceptsReturn = true;
-			this->current_clock->Location = System::Drawing::Point(123, 575);
+			this->current_clock->Location = System::Drawing::Point(459, 475);
 			this->current_clock->Name = L"current_clock";
 			this->current_clock->ReadOnly = true;
 			this->current_clock->Size = System::Drawing::Size(46, 20);
@@ -1509,33 +1491,6 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->Rob0->Size = System::Drawing::Size(33, 13);
 			this->Rob0->TabIndex = 121;
 			this->Rob0->Text = L"Rob0";
-			// 
-			// label20
-			// 
-			this->label20->AutoSize = true;
-			this->label20->Location = System::Drawing::Point(779, 194);
-			this->label20->Name = L"label20";
-			this->label20->Size = System::Drawing::Size(122, 13);
-			this->label20->TabIndex = 131;
-			this->label20->Text = L"Computer Arch ECE 474";
-			// 
-			// label21
-			// 
-			this->label21->AutoSize = true;
-			this->label21->Location = System::Drawing::Point(814, 207);
-			this->label21->Name = L"label21";
-			this->label21->Size = System::Drawing::Size(58, 13);
-			this->label21->TabIndex = 132;
-			this->label21->Text = L"Taught by:";
-			// 
-			// label22
-			// 
-			this->label22->AutoSize = true;
-			this->label22->Location = System::Drawing::Point(770, 220);
-			this->label22->Name = L"label22";
-			this->label22->Size = System::Drawing::Size(143, 13);
-			this->label22->TabIndex = 133;
-			this->label22->Text = L"Sudarshan Srinivasan, Ph.D.";
 			// 
 			// Val9
 			// 
@@ -1748,17 +1703,17 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			// 
 			this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->richTextBox1->Location = System::Drawing::Point(700, 468);
+			this->richTextBox1->Location = System::Drawing::Point(356, 280);
 			this->richTextBox1->Name = L"richTextBox1";
 			this->richTextBox1->ReadOnly = true;
-			this->richTextBox1->Size = System::Drawing::Size(229, 167);
+			this->richTextBox1->Size = System::Drawing::Size(397, 167);
 			this->richTextBox1->TabIndex = 158;
 			this->richTextBox1->Text = L"";
 			// 
 			// Output
 			// 
 			this->Output->AutoSize = true;
-			this->Output->Location = System::Drawing::Point(697, 447);
+			this->Output->Location = System::Drawing::Point(353, 259);
 			this->Output->Name = L"Output";
 			this->Output->Size = System::Drawing::Size(42, 13);
 			this->Output->TabIndex = 159;
@@ -1836,20 +1791,43 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->label23->TabIndex = 160;
 			this->label23->Text = L"RS0";
 			// 
+			// FilePickerBtn
+			// 
+			this->FilePickerBtn->Location = System::Drawing::Point(189, 227);
+			this->FilePickerBtn->Name = L"FilePickerBtn";
+			this->FilePickerBtn->Size = System::Drawing::Size(30, 23);
+			this->FilePickerBtn->TabIndex = 168;
+			this->FilePickerBtn->Text = L"...";
+			this->FilePickerBtn->UseVisualStyleBackColor = true;
+			this->FilePickerBtn->Click += gcnew System::EventHandler(this, &Form1::FilePickerBtn_Click);
+			// 
+			// aboutBtn
+			// 
+			this->aboutBtn->Location = System::Drawing::Point(707, 528);
+			this->aboutBtn->Name = L"aboutBtn";
+			this->aboutBtn->Size = System::Drawing::Size(46, 23);
+			this->aboutBtn->TabIndex = 169;
+			this->aboutBtn->Text = L"About";
+			this->aboutBtn->UseVisualStyleBackColor = true;
+			this->aboutBtn->Click += gcnew System::EventHandler(this, &Form1::aboutBtn_Click);
+			// 
 			// label18
 			// 
 			this->label18->AutoSize = true;
-			this->label18->Location = System::Drawing::Point(42, 275);
+			this->label18->Location = System::Drawing::Point(33, 275);
 			this->label18->Name = L"label18";
 			this->label18->Size = System::Drawing::Size(24, 13);
-			this->label18->TabIndex = 46;
+			this->label18->TabIndex = 170;
 			this->label18->Text = L"RF:";
 			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(941, 685);
+			this->ClientSize = System::Drawing::Size(780, 589);
+			this->Controls->Add(this->label18);
+			this->Controls->Add(this->aboutBtn);
+			this->Controls->Add(this->FilePickerBtn);
 			this->Controls->Add(this->RS0_tag);
 			this->Controls->Add(this->RS0_busy);
 			this->Controls->Add(this->RS0_v2);
@@ -1883,9 +1861,6 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->Controls->Add(this->Val4);
 			this->Controls->Add(this->Val5);
 			this->Controls->Add(this->Val6);
-			this->Controls->Add(this->label22);
-			this->Controls->Add(this->label21);
-			this->Controls->Add(this->label20);
 			this->Controls->Add(this->Rob9);
 			this->Controls->Add(this->Rob8);
 			this->Controls->Add(this->Rob7);
@@ -1959,7 +1934,6 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->Controls->Add(this->Rat_r5);
 			this->Controls->Add(this->Rat_r6);
 			this->Controls->Add(this->label19);
-			this->Controls->Add(this->label18);
 			this->Controls->Add(this->RegF9);
 			this->Controls->Add(this->RegF8);
 			this->Controls->Add(this->RegF7);
@@ -1996,10 +1970,8 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->label8);
-			this->Controls->Add(this->pictureBox1);
 			this->Name = L"Form1";
 			this->Text = L"Tomasulos Algorithm";
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->reg1UD))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->reg2UD))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->reg3UD))->EndInit();
@@ -2014,7 +1986,7 @@ private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^
 	int index = this->InstBox->SelectedIndex;
 	std::string instNameList[] = { "ADD", "SUB", "MUL", "DIV" };
 	if (index != -1) {
-		this->instList->push_back(instObj(instNameList[index], (int)this->reg1UD->Value, (int)this->reg2UD->Value, (int)this->reg3UD->Value));
+		this->instList->push_back(instObj(instNameList[index], (int)this->reg1UD->Value, (int)this->reg2UD->Value, (int)this->reg3UD->Value, this->getNextID()));
 		int end = instList->size() - 1;
 		this->InstBank->Text += gcnew String(instList->at(end).print().c_str()) + "\n";
 	}
@@ -2031,10 +2003,10 @@ private: System::Void QuickAddBtn_Click(System::Object^ sender, System::EventArg
 	//this->instList->push_back(instObj("ADD", 4, 5, 6));
 	//this->instList->push_back(instObj("SUB", 3, 2, 3));
 	//CHANGE FOR LOOP
-	this->instList->push_back(instObj("ADD", 1, 3, 4));
-	this->instList->push_back(instObj("MUL", 7, 1, 5));
-	this->instList->push_back(instObj("DIV", 9, 7, 2));
-	this->instList->push_back(instObj("SUB", 2, 3, 4));
+	this->instList->push_back(instObj("ADD", 1, 3, 4, this->getNextID()));
+	this->instList->push_back(instObj("MUL", 7, 1, 5, this->getNextID()));
+	this->instList->push_back(instObj("DIV", 9, 7, 2, this->getNextID()));
+	this->instList->push_back(instObj("SUB", 2, 3, 4, this->getNextID()));
 
 	int end = instList->size();
 
@@ -2046,17 +2018,34 @@ private: System::Void QuickAddBtn_Click(System::Object^ sender, System::EventArg
 
 private: System::Void run(){
 
-
+	// Handle Write Queue
+	if (this->writeQueue->size() > 0) {
+		if (this->writeQueue->at(0).canWrite == true) {
+			//this->updateRAT(this->writeQueue->at(0));
+			this->removeRat(this->writeQueue->at(0).reg1);
+			this->updateMEM(this->writeQueue->at(0));
+			this->writeQueue->erase(this->writeQueue->begin());
+			
+		}
+	}
 	// Handle Broad Cast Queue
 	//-------------------------------------------------------------------------------------------------
-	if (this->broadCastQ->size() >= 1) {
+	if (this->broadCastQ->size() > 0) {
 		instObj cur = this->broadCastQ->back();
 		this->broadCastQ->pop_back();
 		//std::cout << "size of broadcast Q " << this->broadCastQ->size();
+		for (int i = 0; i < this->writeQueue->size(); i++) {
+			if (this->writeQueue->at(i).instId == cur.instId) {
+				this->writeQueue->at(i).canWrite = true;
+			}
+		}
 		this->updateRAT(cur);
-		this->removeRat(cur.reg1);
+		//this->removeRat(cur.reg1);
+		this->robsInUse->at(cur.reg1) = -1;
+		this->updateMulUnit(); 
 		this->updateAddUnit();
-		this->updateMulUnit();
+		
+
 	}
 
 
@@ -2085,6 +2074,7 @@ private: System::Void run(){
 						this->insertIntoRat(curObj.reg1, curObj.rob);
 						this->addUnit->at(i) = curObj;
 						this->insertROB(curObj);
+						this->writeQueue->push_back(curObj);
 						flipped = true;
 						break;
 					}
@@ -2099,6 +2089,7 @@ private: System::Void run(){
 				this->insertIntoRat(curObj.reg1, curObj.rob);
 				this->addUnit->push_back(curObj);
 				this->insertROB(curObj);
+				this->writeQueue->push_back(curObj);
 			}
 			this->updateInstBank();
 			this->updateAddUnit();
@@ -2114,6 +2105,7 @@ private: System::Void run(){
 						this->insertIntoRat(curObj.reg1, curObj.rob);
 						this->mulUnit->at(i) = curObj;
 						this->insertROB(curObj);
+						this->writeQueue->push_back(curObj);
 						flipped = true;
 						break;
 					}
@@ -2129,6 +2121,7 @@ private: System::Void run(){
 				this->insertIntoRat(curObj.reg1, curObj.rob);
 				this->mulUnit->push_back(curObj);
 				this->insertROB(curObj);
+				this->writeQueue->push_back(curObj);
 			}
 
 			this->updateInstBank();
@@ -2144,8 +2137,8 @@ private: System::Void run(){
 
 	for (curMul = this->mulUnit->begin(); curMul != this->mulUnit->end(); ++curMul) {
 		bool brk = false;
-		if (this->robsInUse->at(curMul->rob) == -1) {
-			std::cout << curMul->rob;
+		if (this->robsInUse->at(curMul->rob) == -1 && curMul->isPlaceHolder == false) {
+			//std::cout << curMul->rob;
 			curMul->CCToFinish -= 1;
 			brk = true;
 		}
@@ -2162,7 +2155,7 @@ private: System::Void run(){
 	std::vector<instObj>::iterator curAdd;
 	for (curAdd = this->addUnit->begin(); curAdd != this->addUnit->end(); ++curAdd) {
 		bool brk = false;
-		if (this->robsInUse->at(curAdd->rob) == -1) {
+		if (this->robsInUse->at(curAdd->rob) == -1 && curAdd->isPlaceHolder == false) {
 			curAdd->CCToFinish -= 1;
 			brk = true;
 		}
@@ -2170,7 +2163,7 @@ private: System::Void run(){
 		if (curAdd->CCToFinish <= 0 && this->broadCastQ->size() == 0 && curAdd->isPlaceHolder == false) {
 			this->broadCastQ->push_back(*curAdd);
 		}
-		if (curAdd->isPlaceHolder == false) {
+		if (brk) {
 			break;
 		}
 	}
@@ -2182,9 +2175,10 @@ private: System::Void run(){
 }
 
 private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^ e) {
-	for (int i = 0; i < this->robsInUse->size(); i++) {
-		std::cout << this->robsInUse->at(i) << " ";
-	}
+	//for (int i = 0; i < this->robsInUse->size(); i++) {
+	//	std::cout << this->robsInUse->at(i) << " ";
+	//}
+	//std::cout << this->broadCastQ->size() << " ";
 	std::cout << "\n";
 	run();
 }
@@ -2216,12 +2210,14 @@ private: System::Void updateMulUnit() {
 					this->RS3_t1->Text = gcnew String("ROB " + this->robsInUse->at(cur.reg2).ToString());
 				}
 				else {
+					//this->RS3_v1->Text = this->writeBackLines->at(cur.reg2).ToString();
 					this->RS3_v1->Text = this->regFilesA->at(cur.reg2).ToString();
 				}
 				if (reg2dep) {
 					this->RS3_t2->Text = gcnew String("ROB " + this->robsInUse->at(cur.reg3).ToString());
 				}
 				else {
+					//this->RS3_v2->Text = this->writeBackLines->at(cur.reg3).ToString();
 					this->RS3_v2->Text = this->regFilesA->at(cur.reg3).ToString();
 				}
 				this->RS3_tag->Text = gcnew String("ROB " + cur.rob.ToString());
@@ -2244,12 +2240,14 @@ private: System::Void updateMulUnit() {
 					this->RS4_t1->Text = gcnew String("ROB " + this->robsInUse->at(cur.reg2).ToString());
 				}
 				else {
+					//this->RS4_v1->Text = this->writeBackLines->at(cur.reg2).ToString();
 					this->RS4_v1->Text = this->regFilesA->at(cur.reg2).ToString();
 				}
 				if (reg2dep) {
 					this->RS4_t2->Text = gcnew String("ROB " + this->robsInUse->at(cur.reg3).ToString());
 				}
 				else {
+					//this->RS4_v2->Text = this->writeBackLines->at(cur.reg3).ToString();
 					this->RS4_v2->Text = this->regFilesA->at(cur.reg3).ToString();
 				}
 				this->RS4_tag->Text = gcnew String("ROB " + cur.rob.ToString());
@@ -2286,13 +2284,15 @@ private: System::Void updateAddUnit() {
 					this->RS0_t1->Text = gcnew String("ROB " + this->robsInUse->at(cur.reg2).ToString());
 				}
 				else {
-					this->RS0_v1->Text = this->regFilesA->at(cur.reg2).ToString();
+					this->RS0_v1->Text = this->writeBackLines->at(cur.reg2).ToString();
+					//this->RS0_v1->Text = this->regFilesA->at(cur.reg2).ToString();
 				}
 				if (reg2dep) {
 					this->RS0_t2->Text = gcnew String("ROB " + this->robsInUse->at(cur.reg3).ToString());
 				}
 				else {
-					this->RS0_v2->Text = this->regFilesA->at(cur.reg3).ToString();
+					this->RS0_v2->Text = this->writeBackLines->at(cur.reg3).ToString();
+					//this->RS0_v2->Text = this->regFilesA->at(cur.reg3).ToString();
 				}
 				this->RS0_tag->Text = gcnew String("ROB " + cur.rob.ToString());
 				cur.index = 0;
@@ -2314,12 +2314,14 @@ private: System::Void updateAddUnit() {
 					this->RS1_t1->Text = gcnew String("ROB " + this->robsInUse->at(cur.reg2).ToString());
 				}
 				else {
+					//this->RS1_v1->Text = this->writeBackLines->at(cur.reg2).ToString();
 					this->RS1_v1->Text = this->regFilesA->at(cur.reg2).ToString();
 				}
 				if (reg2dep) {
 					this->RS1_t2->Text = gcnew String("ROB " + this->robsInUse->at(cur.reg3).ToString());
 				}
 				else {
+					//this->RS1_v2->Text = this->writeBackLines->at(cur.reg3).ToString();
 					this->RS1_v2->Text = this->regFilesA->at(cur.reg3).ToString();
 				}
 				this->RS1_tag->Text = gcnew String("ROB " + cur.rob.ToString());
@@ -2342,12 +2344,14 @@ private: System::Void updateAddUnit() {
 					this->RS2_t1->Text = gcnew String("ROB " + this->robsInUse->at(cur.reg2).ToString());
 				}
 				else {
+					//this->RS2_v1->Text = this->writeBackLines->at(cur.reg2).ToString();
 					this->RS2_v1->Text = this->regFilesA->at(cur.reg2).ToString();
 				}
 				if (reg2dep) {
 					this->RS2_t2->Text = gcnew String("ROB " + this->robsInUse->at(cur.reg3).ToString());
 				}
 				else {
+					//this->RS2_v2->Text = this->writeBackLines->at(cur.reg3).ToString();
 					this->RS2_v2->Text = this->regFilesA->at(cur.reg3).ToString();
 				}
 				this->RS1_tag->Text = gcnew String("ROB " + cur.rob.ToString());
@@ -2419,20 +2423,20 @@ private: System::Void updateRAT(instObj cur) {
 	int r2 = this->regFilesA->at(cur.reg2);
 	int r3 = this->regFilesA->at(cur.reg3);
 	if (cur.inst.compare("ADD") == 0) {
-		val = r2 + r3; 
+		val = r2 + r3;
 
 	}
 	else if (cur.inst.compare("SUB") == 0) {
 		val = r2 - r3;
-		
+
 	}
 	else if (cur.inst.compare("MUL") == 0) {
 		val = r2 * r3;
-		
+
 	}
 	else if (cur.inst.compare("DIV") == 0) {
 		val = r2 / r3;
-		
+
 	}
 	else {
 		std::cout << "Invalid operation";
@@ -2487,23 +2491,13 @@ private: System::Void updateRAT(instObj cur) {
 		break;
 	case 9:
 		this->Val9->Text = gcnew String(val.ToString());
-		this->Done9->Text = gcnew String((this->curClockCycle+1).ToString());
+		this->Done9->Text = gcnew String((this->curClockCycle + 1).ToString());
 		//this->Dest9->Text = gcnew String("R" + cur.reg1.ToString());
 		break;
 
 	default:
 		std::cout << "Invalid ROB counter";
 		break;
-	}
-
-
-	// updating Memory ----------------------------------------------------------------------
-	this->regFilesA->at(cur.reg1) = val;
-	this->updateMemeory();
-
-	this->curROB += 1;
-	if (curROB >= 10) {
-		this->curROB = 0;
 	}
 
 	if (cur.inst.compare("ADD") == 0 || cur.inst.compare("SUB") == 0) {
@@ -2524,8 +2518,49 @@ private: System::Void updateRAT(instObj cur) {
 			}
 		}
 	}
+
 	this->updateAddUnit();
 	this->updateMulUnit();
+	
+
+}
+private: System::Void updateMEM(instObj cur) {
+	int val = 0;
+	int r2 = this->regFilesA->at(cur.reg2);
+	int r3 = this->regFilesA->at(cur.reg3);
+	if (cur.inst.compare("ADD") == 0) {
+		val = r2 + r3;
+
+	}
+	else if (cur.inst.compare("SUB") == 0) {
+		val = r2 - r3;
+
+	}
+	else if (cur.inst.compare("MUL") == 0) {
+		val = r2 * r3;
+
+	}
+	else if (cur.inst.compare("DIV") == 0) {
+		val = r2 / r3;
+
+	}
+	else {
+		std::cout << "Invalid operation";
+	}
+	// updating Memory ----------------------------------------------------------------------
+	this->regFilesA->at(cur.reg1) = val;
+	this->updateMemeory();
+
+	this->curROB += 1;
+	if (curROB >= 10) {
+		this->curROB = 0;
+	}
+
+
+	this->updateAddUnit();
+	this->updateMulUnit();
+
+
 }
 
 private: System::Void updateMemeory() {
@@ -2578,7 +2613,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	}
 	else {
 		this->isRunning = true;
-		this->button2->Text = "STOP";
+		this->button2->Text = "...";
 	}
 	this->runningLoop();
 
@@ -2586,9 +2621,16 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 
 private: System::Void runningLoop() {
 	while (this->isRunning) {
+		if ((this->instList->size()==0 && this->writeQueue->size() == 0) || this->cyclesOfSimulation == 0 ) {
+			this->cyclesOfSimulation = -1;
+			this->button2->Text = "Done";
+			this->isRunning = false;
+			break;
+		}
+		this->cyclesOfSimulation--;
 		this->run();
 		this->Update();
-		Sleep(1000);
+		Sleep(500);
 
 	}
 }
@@ -2649,7 +2691,7 @@ private: System::Void insertIntoRat(int ratNumber, int robNumber) {
 }
 
 private: System::Void removeRat(int ratNumber) {
-	this->robsInUse->at(ratNumber) = -1;
+	
 	switch (ratNumber)
 	{
 	case 0:
@@ -2686,6 +2728,117 @@ private: System::Void removeRat(int ratNumber) {
 		std::cout << "Invalid Rat Number On Remove\n";
 		break;
 	}
+}
+
+private: int getNextID() {
+	this->curID = this->curID + 1;
+	return this->curID;
+}
+
+private: System::Void FilePickerBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+	OpenFileDialog^ openFileDialog1 = gcnew OpenFileDialog;
+
+	openFileDialog1->InitialDirectory = "c:\\";
+	openFileDialog1->Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+	openFileDialog1->FilterIndex = 2;
+	openFileDialog1->RestoreDirectory = true;
+
+	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+	{	
+		String^ temp = gcnew String(openFileDialog1->FileName->ToString());
+		using System::Runtime::InteropServices::Marshal;
+		std::ifstream file((const char*)(Marshal::StringToHGlobalAnsi(temp->ToString())).ToPointer());
+		//std::ifstream file("C:/Users/treeb/OneDrive/Desktop/Instructions.txt");
+		std::string str;
+		int i = 0;
+		int numOfInst, topRange;
+		while (std::getline(file, str)) {
+			//std::cout << str << "\n";
+			if (i == 0) {
+				numOfInst = std::stoi(str);
+				topRange = 2 + numOfInst;
+			}
+			else if (i == 1) {
+				this->cyclesOfSimulation = std::stoi(str);
+			}
+			else if ( i<topRange ) {
+				std::string code = str.substr(0, 1);
+				int codei = std::stoi(code);
+
+				int ir1 = std::stoi(str.substr(2, 3));
+				int ir2 = std::stoi(str.substr(4, 5));
+				int ir3 = std::stoi(str.substr(6, 7));
+				switch (codei)
+				{
+				case 0:
+					this->instList->push_back(instObj("ADD",  ir1, ir2, ir3, this->getNextID()));
+					break;
+				case 1:
+					this->instList->push_back(instObj("SUB", ir1, ir2, ir3, this->getNextID()));
+					break;
+				case 2:
+					this->instList->push_back(instObj("MUL", ir1, ir2, ir3, this->getNextID()));
+					break;
+				case 3:
+					this->instList->push_back(instObj("DIV", ir1, ir2, ir3, this->getNextID()));
+					break;
+				default:
+					std::cout << "Invalid Inst Name\n";
+					break;
+				}
+				this->updateInstBank();
+			}
+			else {
+				int key = i - (2 + numOfInst);
+				this->regFilesA->at(key) = std::stoi(str);
+				switch (key)
+				{
+				case 0:
+					this->RegF0->Text = gcnew String(this->regFilesA->at(key).ToString());
+					break;
+				case 1:
+					this->RegF1->Text = gcnew String(this->regFilesA->at(key).ToString());
+					break;
+				case 2:
+					this->RegF2->Text = gcnew String(this->regFilesA->at(key).ToString());
+					break;
+				case 3:
+					this->RegF3->Text = gcnew String(this->regFilesA->at(key).ToString());
+					break;
+				case 4:
+					this->RegF4->Text = gcnew String(this->regFilesA->at(key).ToString());
+					break;
+				case 5:
+					this->RegF5->Text = gcnew String(this->regFilesA->at(key).ToString());
+					break;
+				case 6:
+					this->RegF6->Text = gcnew String(this->regFilesA->at(key).ToString());
+					break;
+				case 7:
+					this->RegF7->Text = gcnew String(this->regFilesA->at(key).ToString());
+					break;
+				case 8:
+					this->RegF8->Text = gcnew String(this->regFilesA->at(key).ToString());
+					break;
+				case 9:
+					this->RegF9->Text = gcnew String(this->regFilesA->at(key).ToString());
+					break;
+				default:
+					std::cout << "Invalid Mem counter in load file\n";
+					break;
+				}
+			}
+			
+			i++;
+		}
+	}
+
+}
+private: System::Void aboutBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	//MessageBox::Show("Computer Arch ECE 474 Taught by: Sudarshan Srinivasan, Ph.D.");
+	AboutPopUp^ a = gcnew AboutPopUp();
+	a->Show();
 }
 
 };

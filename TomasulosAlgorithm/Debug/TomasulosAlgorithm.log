@@ -1,12 +1,14 @@
-﻿  Form1.cpp
-N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2079,30): warning C4018: '>=': signed/unsigned mismatch
-N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2108,30): warning C4018: '>=': signed/unsigned mismatch
-N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2184,20): warning C4018: '<': signed/unsigned mismatch
-N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2192,20): warning C4018: '<': signed/unsigned mismatch
-N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2262,20): warning C4018: '<': signed/unsigned mismatch
-N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2510,21): warning C4018: '<': signed/unsigned mismatch
-N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2519,21): warning C4018: '<': signed/unsigned mismatch
-N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2531,20): warning C4018: '<': signed/unsigned mismatch
+﻿  AboutPopUp1.cpp
+  Form1.cpp
+N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2037,21): warning C4018: '<': signed/unsigned mismatch
+N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2068,30): warning C4018: '>=': signed/unsigned mismatch
+N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2099,30): warning C4018: '>=': signed/unsigned mismatch
+N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2187,20): warning C4018: '<': signed/unsigned mismatch
+N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2261,20): warning C4018: '<': signed/unsigned mismatch
+N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2505,21): warning C4018: '<': signed/unsigned mismatch
+N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2514,21): warning C4018: '<': signed/unsigned mismatch
+N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2567,20): warning C4018: '<': signed/unsigned mismatch
 N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.cpp(9,1): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
-  Form1.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  Generating Code...
+  AboutPopUp1.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   TomasulosAlgorithm.vcxproj -> N:\TomasulosAlgorithm\Debug\TomasulosAlgorithm.exe
