@@ -42,6 +42,7 @@ namespace TomasulosAlgorithm {
 	private: System::Windows::Forms::Label^ label20;
 
 	private: System::Windows::Forms::LinkLabel^ linkLabel1;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
 
 
 
@@ -58,10 +59,13 @@ namespace TomasulosAlgorithm {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(AboutPopUp::typeid));
 			this->label22 = (gcnew System::Windows::Forms::Label());
 			this->label21 = (gcnew System::Windows::Forms::Label());
 			this->label20 = (gcnew System::Windows::Forms::Label());
 			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label22
@@ -103,17 +107,28 @@ namespace TomasulosAlgorithm {
 			this->linkLabel1->Text = L"Click Here For Video Tuatorial";
 			this->linkLabel1->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &AboutPopUp::linkLabel1_LinkClicked);
 			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+			this->pictureBox1->Location = System::Drawing::Point(178, 28);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(148, 205);
+			this->pictureBox1->TabIndex = 139;
+			this->pictureBox1->TabStop = false;
+			// 
 			// AboutPopUp
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(466, 261);
+			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->linkLabel1);
 			this->Controls->Add(this->label22);
 			this->Controls->Add(this->label21);
 			this->Controls->Add(this->label20);
 			this->Name = L"AboutPopUp";
 			this->Text = L"AboutPopUp";
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

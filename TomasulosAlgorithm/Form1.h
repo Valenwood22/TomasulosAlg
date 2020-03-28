@@ -2748,7 +2748,6 @@ private: System::Void FilePickerBtn_Click(System::Object^ sender, System::EventA
 		String^ temp = gcnew String(openFileDialog1->FileName->ToString());
 		using System::Runtime::InteropServices::Marshal;
 		std::ifstream file((const char*)(Marshal::StringToHGlobalAnsi(temp->ToString())).ToPointer());
-		//std::ifstream file("C:/Users/treeb/OneDrive/Desktop/Instructions.txt");
 		std::string str;
 		int i = 0;
 		int numOfInst, topRange;
