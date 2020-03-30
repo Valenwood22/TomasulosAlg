@@ -43,6 +43,14 @@ namespace TomasulosAlgorithm {
 
 	private: System::Windows::Forms::LinkLabel^ linkLabel1;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::Label^ label1;
+
+
+
+
+
+
+
 
 
 
@@ -65,13 +73,14 @@ namespace TomasulosAlgorithm {
 			this->label20 = (gcnew System::Windows::Forms::Label());
 			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label22
 			// 
 			this->label22->AutoSize = true;
-			this->label22->Location = System::Drawing::Point(13, 220);
+			this->label22->Location = System::Drawing::Point(9, 66);
 			this->label22->Name = L"label22";
 			this->label22->Size = System::Drawing::Size(143, 13);
 			this->label22->TabIndex = 137;
@@ -80,7 +89,7 @@ namespace TomasulosAlgorithm {
 			// label21
 			// 
 			this->label21->AutoSize = true;
-			this->label21->Location = System::Drawing::Point(57, 207);
+			this->label21->Location = System::Drawing::Point(53, 53);
 			this->label21->Name = L"label21";
 			this->label21->Size = System::Drawing::Size(58, 13);
 			this->label21->TabIndex = 136;
@@ -89,7 +98,7 @@ namespace TomasulosAlgorithm {
 			// label20
 			// 
 			this->label20->AutoSize = true;
-			this->label20->Location = System::Drawing::Point(22, 194);
+			this->label20->Location = System::Drawing::Point(18, 40);
 			this->label20->Name = L"label20";
 			this->label20->Size = System::Drawing::Size(122, 13);
 			this->label20->TabIndex = 135;
@@ -99,7 +108,7 @@ namespace TomasulosAlgorithm {
 			// 
 			this->linkLabel1->AutoSize = true;
 			this->linkLabel1->LinkColor = System::Drawing::Color::Navy;
-			this->linkLabel1->Location = System::Drawing::Point(162, 12);
+			this->linkLabel1->Location = System::Drawing::Point(9, 19);
 			this->linkLabel1->Name = L"linkLabel1";
 			this->linkLabel1->Size = System::Drawing::Size(148, 13);
 			this->linkLabel1->TabIndex = 138;
@@ -109,18 +118,27 @@ namespace TomasulosAlgorithm {
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(178, 28);
+			this->pictureBox1->Location = System::Drawing::Point(500, 22);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(148, 205);
+			this->pictureBox1->Size = System::Drawing::Size(10, 10);
 			this->pictureBox1->TabIndex = 139;
 			this->pictureBox1->TabStop = false;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(12, 91);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(521, 338);
+			this->label1->TabIndex = 140;
+			this->label1->Text = resources->GetString(L"label1.Text");
 			// 
 			// AboutPopUp
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(466, 261);
+			this->ClientSize = System::Drawing::Size(564, 457);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->linkLabel1);
 			this->Controls->Add(this->label22);

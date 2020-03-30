@@ -57,7 +57,14 @@ namespace TomasulosAlgorithm {
 		int curID = -1;
 		int lastID = 0;
 		int cyclesOfSimulation = -1;
-	
+	private: System::Windows::Forms::Label^ label22;
+	public:
+	private: System::Windows::Forms::Label^ label21;
+	private: System::Windows::Forms::Label^ label20;
+	private: System::Windows::Forms::LinkLabel^ linkLabel1;
+
+	public:
+
 	public:
 
 
@@ -129,7 +136,7 @@ namespace TomasulosAlgorithm {
 	private: System::Windows::Forms::Label^ label18;
 	private: System::Windows::Forms::Button^ FilePickerBtn;
 
-	private: System::Windows::Forms::Button^ aboutBtn;
+
 
 
 	private: System::Windows::Forms::Label^ label8;
@@ -338,7 +345,8 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 	private: System::Windows::Forms::Label^ label24;
 	private: System::Windows::Forms::Label^ label25;
 	private: System::Windows::Forms::Label^ label26;
-	private: System::Windows::Forms::RichTextBox^ richTextBox1;
+private: System::Windows::Forms::RichTextBox^ out;
+
 	private: System::Windows::Forms::Label^ Output;
 
 
@@ -493,7 +501,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->label24 = (gcnew System::Windows::Forms::Label());
 			this->label25 = (gcnew System::Windows::Forms::Label());
 			this->label26 = (gcnew System::Windows::Forms::Label());
-			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
+			this->out = (gcnew System::Windows::Forms::RichTextBox());
 			this->Output = (gcnew System::Windows::Forms::Label());
 			this->RS0_tag = (gcnew System::Windows::Forms::TextBox());
 			this->RS0_busy = (gcnew System::Windows::Forms::TextBox());
@@ -504,8 +512,11 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->RS0_op = (gcnew System::Windows::Forms::TextBox());
 			this->label23 = (gcnew System::Windows::Forms::Label());
 			this->FilePickerBtn = (gcnew System::Windows::Forms::Button());
-			this->aboutBtn = (gcnew System::Windows::Forms::Button());
 			this->label18 = (gcnew System::Windows::Forms::Label());
+			this->label22 = (gcnew System::Windows::Forms::Label());
+			this->label21 = (gcnew System::Windows::Forms::Label());
+			this->label20 = (gcnew System::Windows::Forms::Label());
+			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->reg1UD))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->reg2UD))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->reg3UD))->BeginInit();
@@ -1699,16 +1710,17 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->label26->TabIndex = 157;
 			this->label26->Text = L"Done";
 			// 
-			// richTextBox1
+			// out
 			// 
-			this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->out->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->richTextBox1->Location = System::Drawing::Point(356, 280);
-			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->ReadOnly = true;
-			this->richTextBox1->Size = System::Drawing::Size(397, 167);
-			this->richTextBox1->TabIndex = 158;
-			this->richTextBox1->Text = L"";
+			this->out->Location = System::Drawing::Point(356, 280);
+			this->out->Name = L"out";
+			this->out->ReadOnly = true;
+			this->out->Size = System::Drawing::Size(397, 167);
+			this->out->TabIndex = 158;
+			this->out->Text = L"";
+			this->out->TextChanged += gcnew System::EventHandler(this, &Form1::out_TextChanged);
 			// 
 			// Output
 			// 
@@ -1801,16 +1813,6 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->FilePickerBtn->UseVisualStyleBackColor = true;
 			this->FilePickerBtn->Click += gcnew System::EventHandler(this, &Form1::FilePickerBtn_Click);
 			// 
-			// aboutBtn
-			// 
-			this->aboutBtn->Location = System::Drawing::Point(707, 528);
-			this->aboutBtn->Name = L"aboutBtn";
-			this->aboutBtn->Size = System::Drawing::Size(46, 23);
-			this->aboutBtn->TabIndex = 169;
-			this->aboutBtn->Text = L"About";
-			this->aboutBtn->UseVisualStyleBackColor = true;
-			this->aboutBtn->Click += gcnew System::EventHandler(this, &Form1::aboutBtn_Click);
-			// 
 			// label18
 			// 
 			this->label18->AutoSize = true;
@@ -1820,13 +1822,54 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->label18->TabIndex = 170;
 			this->label18->Text = L"RF:";
 			// 
+			// label22
+			// 
+			this->label22->AutoSize = true;
+			this->label22->Location = System::Drawing::Point(610, 528);
+			this->label22->Name = L"label22";
+			this->label22->Size = System::Drawing::Size(143, 13);
+			this->label22->TabIndex = 173;
+			this->label22->Text = L"Sudarshan Srinivasan, Ph.D.";
+			// 
+			// label21
+			// 
+			this->label21->AutoSize = true;
+			this->label21->Location = System::Drawing::Point(654, 515);
+			this->label21->Name = L"label21";
+			this->label21->Size = System::Drawing::Size(58, 13);
+			this->label21->TabIndex = 172;
+			this->label21->Text = L"Taught by:";
+			// 
+			// label20
+			// 
+			this->label20->AutoSize = true;
+			this->label20->Location = System::Drawing::Point(619, 502);
+			this->label20->Name = L"label20";
+			this->label20->Size = System::Drawing::Size(122, 13);
+			this->label20->TabIndex = 171;
+			this->label20->Text = L"Computer Arch ECE 474";
+			// 
+			// linkLabel1
+			// 
+			this->linkLabel1->AutoSize = true;
+			this->linkLabel1->LinkColor = System::Drawing::Color::Navy;
+			this->linkLabel1->Location = System::Drawing::Point(640, 475);
+			this->linkLabel1->Name = L"linkLabel1";
+			this->linkLabel1->Size = System::Drawing::Size(72, 13);
+			this->linkLabel1->TabIndex = 174;
+			this->linkLabel1->TabStop = true;
+			this->linkLabel1->Text = L"Tutorial Video";
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(780, 589);
+			this->ClientSize = System::Drawing::Size(780, 566);
+			this->Controls->Add(this->linkLabel1);
+			this->Controls->Add(this->label22);
+			this->Controls->Add(this->label21);
+			this->Controls->Add(this->label20);
 			this->Controls->Add(this->label18);
-			this->Controls->Add(this->aboutBtn);
 			this->Controls->Add(this->FilePickerBtn);
 			this->Controls->Add(this->RS0_tag);
 			this->Controls->Add(this->RS0_busy);
@@ -1837,7 +1880,7 @@ private: System::Windows::Forms::TextBox^ RS1_busy;
 			this->Controls->Add(this->RS0_op);
 			this->Controls->Add(this->label23);
 			this->Controls->Add(this->Output);
-			this->Controls->Add(this->richTextBox1);
+			this->Controls->Add(this->out);
 			this->Controls->Add(this->label26);
 			this->Controls->Add(this->label25);
 			this->Controls->Add(this->label24);
@@ -1989,6 +2032,8 @@ private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^
 		this->instList->push_back(instObj(instNameList[index], (int)this->reg1UD->Value, (int)this->reg2UD->Value, (int)this->reg3UD->Value, this->getNextID()));
 		int end = instList->size() - 1;
 		this->InstBank->Text += gcnew String(instList->at(end).print().c_str()) + "\n";
+		this->out->Text += gcnew String(this->curClockCycle.ToString());
+		this->out->Text += gcnew String(": Instruction added to queue\n");
 	}
 }
 
@@ -2012,6 +2057,8 @@ private: System::Void QuickAddBtn_Click(System::Object^ sender, System::EventArg
 
 	for (int i = end - 4; i < end; i++) {
 		this->InstBank->Text += gcnew String(instList->at(i).print().c_str()) + "\n";
+		this->out->Text += gcnew String(this->curClockCycle.ToString());
+		this->out->Text += gcnew String(": Instruction added to queue\n");
 	}
 
 }
@@ -2024,7 +2071,10 @@ private: System::Void run(){
 			//this->updateRAT(this->writeQueue->at(0));
 			this->removeRat(this->writeQueue->at(0).reg1);
 			this->updateMEM(this->writeQueue->at(0));
+			this->out->Text += gcnew String((this->curClockCycle+1).ToString());
+			this->out->Text += gcnew String(": Writing Inst to memory\n");
 			this->writeQueue->erase(this->writeQueue->begin());
+			
 			
 		}
 	}
@@ -2044,6 +2094,8 @@ private: System::Void run(){
 		this->robsInUse->at(cur.reg1) = -1;
 		this->updateMulUnit(); 
 		this->updateAddUnit();
+		this->out->Text += gcnew String((this->curClockCycle+1).ToString());
+		this->out->Text += gcnew String(": Broadcasting Inst\n");
 		
 
 	}
@@ -2075,6 +2127,8 @@ private: System::Void run(){
 						this->addUnit->at(i) = curObj;
 						this->insertROB(curObj);
 						this->writeQueue->push_back(curObj);
+						this->out->Text += gcnew String(this->curClockCycle.ToString());
+						this->out->Text += gcnew String(": Moved Inst to Reservation Station\n");
 						flipped = true;
 						break;
 					}
@@ -2090,6 +2144,8 @@ private: System::Void run(){
 				this->addUnit->push_back(curObj);
 				this->insertROB(curObj);
 				this->writeQueue->push_back(curObj);
+				this->out->Text += gcnew String(this->curClockCycle.ToString());
+				this->out->Text += gcnew String(": Moved Inst to Reservation Station\n");
 			}
 			this->updateInstBank();
 			this->updateAddUnit();
@@ -2106,6 +2162,8 @@ private: System::Void run(){
 						this->mulUnit->at(i) = curObj;
 						this->insertROB(curObj);
 						this->writeQueue->push_back(curObj);
+						this->out->Text += gcnew String(this->curClockCycle.ToString());
+						this->out->Text += gcnew String(": Moved Inst to Reservation Station\n");
 						flipped = true;
 						break;
 					}
@@ -2122,6 +2180,8 @@ private: System::Void run(){
 				this->mulUnit->push_back(curObj);
 				this->insertROB(curObj);
 				this->writeQueue->push_back(curObj);
+				this->out->Text += gcnew String(this->curClockCycle.ToString());
+				this->out->Text += gcnew String(": Moved Inst to Reservation Station\n");
 			}
 
 			this->updateInstBank();
@@ -2142,7 +2202,7 @@ private: System::Void run(){
 			curMul->CCToFinish -= 1;
 			brk = true;
 		}
-		std::cout << "Inst is at " << curMul->CCToFinish << "\n";
+		//std::cout << "Inst is at " << curMul->CCToFinish << "\n";
 		if (curMul->CCToFinish <= 0 && this->broadCastQ->size() == 0 && curMul->isPlaceHolder == false) {
 			this->broadCastQ->push_back(*curMul);
 
@@ -2179,7 +2239,7 @@ private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^
 	//	std::cout << this->robsInUse->at(i) << " ";
 	//}
 	//std::cout << this->broadCastQ->size() << " ";
-	std::cout << "\n";
+	//std::cout << "\n";
 	run();
 }
 
@@ -2838,6 +2898,15 @@ private: System::Void aboutBtn_Click(System::Object^ sender, System::EventArgs^ 
 	//MessageBox::Show("Computer Arch ECE 474 Taught by: Sudarshan Srinivasan, Ph.D.");
 	AboutPopUp^ a = gcnew AboutPopUp();
 	a->Show();
+}
+
+
+
+private: System::Void out_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	// set the current caret position to the end
+	this->out->SelectionStart = this->out->TextLength;
+	// scroll it automatically
+	this->out->ScrollToCaret();
 }
 
 };
