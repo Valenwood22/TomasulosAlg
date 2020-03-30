@@ -1861,6 +1861,7 @@ private: System::Windows::Forms::RichTextBox^ out;
 			this->linkLabel1->TabIndex = 174;
 			this->linkLabel1->TabStop = true;
 			this->linkLabel1->Text = L"Tutorial Video";
+			this->linkLabel1->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &Form1::linkLabel1_LinkClicked);
 			// 
 			// Form1
 			// 
@@ -2913,6 +2914,9 @@ private: System::Void out_TextChanged(System::Object^ sender, System::EventArgs^
 }
 
 private: System::Void label8_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void linkLabel1_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
+	system("start https://www.joshuagisi.com/tomasulos");
 }
 };
 }
