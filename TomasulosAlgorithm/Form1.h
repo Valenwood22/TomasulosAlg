@@ -63,6 +63,7 @@ namespace TomasulosAlgorithm {
 	private: System::Windows::Forms::Label^ label20;
 	private: System::Windows::Forms::LinkLabel^ linkLabel1;
 
+
 	public:
 
 	public:
@@ -79,10 +80,10 @@ namespace TomasulosAlgorithm {
 		{
 			
 			InitializeComponent();
-			InstBox->Items->Add("ADD");
-			InstBox->Items->Add("SUB");
-			InstBox->Items->Add("MUL");
-			InstBox->Items->Add("DIV");
+			InstBox->Items->Add("ADD (2CC)");
+			InstBox->Items->Add("SUB (2CC)");
+			InstBox->Items->Add("MUL (10CC)");
+			InstBox->Items->Add("DIV (40CC)");
 			
 			RegF0->Text = "0";
 			RegF1->Text = "1";
@@ -529,7 +530,8 @@ private: System::Windows::Forms::RichTextBox^ out;
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(94, 13);
 			this->label8->TabIndex = 10;
-			this->label8->Text = L"Instruction Queue:";
+			this->label8->Text = L"Instruction Queue:\r\n";
+			this->label8->Click += gcnew System::EventHandler(this, &Form1::label8_Click);
 			// 
 			// label9
 			// 
@@ -595,7 +597,7 @@ private: System::Windows::Forms::RichTextBox^ out;
 			this->InstBank->Location = System::Drawing::Point(12, 58);
 			this->InstBank->Name = L"InstBank";
 			this->InstBank->ReadOnly = true;
-			this->InstBank->Size = System::Drawing::Size(229, 167);
+			this->InstBank->Size = System::Drawing::Size(249, 167);
 			this->InstBank->TabIndex = 17;
 			this->InstBank->Text = L"";
 			// 
@@ -604,26 +606,26 @@ private: System::Windows::Forms::RichTextBox^ out;
 			this->InstBox->FormattingEnabled = true;
 			this->InstBox->Location = System::Drawing::Point(13, 31);
 			this->InstBox->Name = L"InstBox";
-			this->InstBox->Size = System::Drawing::Size(46, 21);
+			this->InstBox->Size = System::Drawing::Size(66, 21);
 			this->InstBox->TabIndex = 18;
 			// 
 			// reg1UD
 			// 
-			this->reg1UD->Location = System::Drawing::Point(86, 31);
+			this->reg1UD->Location = System::Drawing::Point(106, 31);
 			this->reg1UD->Name = L"reg1UD";
 			this->reg1UD->Size = System::Drawing::Size(34, 20);
 			this->reg1UD->TabIndex = 19;
 			// 
 			// reg2UD
 			// 
-			this->reg2UD->Location = System::Drawing::Point(147, 32);
+			this->reg2UD->Location = System::Drawing::Point(167, 32);
 			this->reg2UD->Name = L"reg2UD";
 			this->reg2UD->Size = System::Drawing::Size(34, 20);
 			this->reg2UD->TabIndex = 20;
 			// 
 			// reg3UD
 			// 
-			this->reg3UD->Location = System::Drawing::Point(207, 32);
+			this->reg3UD->Location = System::Drawing::Point(227, 32);
 			this->reg3UD->Name = L"reg3UD";
 			this->reg3UD->Size = System::Drawing::Size(34, 20);
 			this->reg3UD->TabIndex = 21;
@@ -631,7 +633,7 @@ private: System::Windows::Forms::RichTextBox^ out;
 			// label12
 			// 
 			this->label12->AutoSize = true;
-			this->label12->Location = System::Drawing::Point(65, 34);
+			this->label12->Location = System::Drawing::Point(85, 34);
 			this->label12->Name = L"label12";
 			this->label12->Size = System::Drawing::Size(15, 13);
 			this->label12->TabIndex = 22;
@@ -640,7 +642,7 @@ private: System::Windows::Forms::RichTextBox^ out;
 			// label13
 			// 
 			this->label13->AutoSize = true;
-			this->label13->Location = System::Drawing::Point(126, 34);
+			this->label13->Location = System::Drawing::Point(146, 34);
 			this->label13->Name = L"label13";
 			this->label13->Size = System::Drawing::Size(15, 13);
 			this->label13->TabIndex = 23;
@@ -649,7 +651,7 @@ private: System::Windows::Forms::RichTextBox^ out;
 			// label14
 			// 
 			this->label14->AutoSize = true;
-			this->label14->Location = System::Drawing::Point(186, 34);
+			this->label14->Location = System::Drawing::Point(206, 34);
 			this->label14->Name = L"label14";
 			this->label14->Size = System::Drawing::Size(15, 13);
 			this->label14->TabIndex = 24;
@@ -2114,6 +2116,7 @@ private: System::Void run(){
 		instObj curObj = this->instList->at(0);
 		this->instList->erase(instList->begin());
 		this->updateInstBank();
+		
 
 
 		if (curObj.inst.compare("ADD") == 0 || curObj.inst.compare("SUB") == 0) {
@@ -2666,7 +2669,7 @@ private: System::Void updateMemeory() {
 }
 
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	std::cout << "Run Btn Pressed/n";
+	//std::cout << "Run Btn Pressed/n";
 	if (isRunning) {
 		this->isRunning = false;
 		this->button2->Text = "Run";
@@ -2909,5 +2912,7 @@ private: System::Void out_TextChanged(System::Object^ sender, System::EventArgs^
 	this->out->ScrollToCaret();
 }
 
+private: System::Void label8_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

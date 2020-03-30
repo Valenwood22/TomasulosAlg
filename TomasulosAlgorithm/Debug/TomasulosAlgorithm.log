@@ -1,12 +1,12 @@
 ﻿  Form1.cpp
-N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2087,21): warning C4018: '<': signed/unsigned mismatch
-N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2120,30): warning C4018: '>=': signed/unsigned mismatch
-N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2155,30): warning C4018: '>=': signed/unsigned mismatch
-N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2247,20): warning C4018: '<': signed/unsigned mismatch
-N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2321,20): warning C4018: '<': signed/unsigned mismatch
-N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2565,21): warning C4018: '<': signed/unsigned mismatch
-N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2574,21): warning C4018: '<': signed/unsigned mismatch
-N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2627,20): warning C4018: '<': signed/unsigned mismatch
+N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2089,21): warning C4018: '<': signed/unsigned mismatch
+N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2123,30): warning C4018: '>=': signed/unsigned mismatch
+N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2158,30): warning C4018: '>=': signed/unsigned mismatch
+N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2250,20): warning C4018: '<': signed/unsigned mismatch
+N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2324,20): warning C4018: '<': signed/unsigned mismatch
+N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2568,21): warning C4018: '<': signed/unsigned mismatch
+N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2577,21): warning C4018: '<': signed/unsigned mismatch
+N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.h(2630,20): warning C4018: '<': signed/unsigned mismatch
 N:\TomasulosAlgorithm\TomasulosAlgorithm\Form1.cpp(9,1): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
   AboutPopUp1.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   TomasulosAlgorithm.vcxproj -> N:\TomasulosAlgorithm\Debug\TomasulosAlgorithm.exe
